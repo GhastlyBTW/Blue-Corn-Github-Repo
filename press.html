@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Press | Blue Corn Mexican Restaurant</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lato:wght@300;400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --blue-deep: #1A3A5C;
+      --blue-primary: #2B4F7E;
+      --blue-talavera: #2E4A7A;
+      --blue-light: #5A8FC5;
+      --blue-pale: #D6E6F5;
+      --gold: #C49A2A;
+      --charcoal: #2B2B2B;
+      --white: #FFFFFF;
+      --gray-light: #F5F5F5;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      color: var(--charcoal);
+      background-color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ===== NAVIGATION ===== */
+    .navbar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 60px;
+      background-color: var(--blue-deep);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.8);
+      font-family: 'Lato', sans-serif;
+      font-weight: 400;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-logo {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.8rem;
+      color: var(--white);
+      padding: 0 30px;
+      text-decoration: none;
+    }
+
+    /* ===== PAGE HEADER ===== */
+    .page-header {
+      text-align: center;
+      padding: 80px 60px 60px;
+    }
+
+    .page-header h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 5rem;
+      color: var(--blue-deep);
+      margin-bottom: 12px;
+    }
+
+    .page-header p {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: #999;
+      letter-spacing: 0.05em;
+    }
+
+    .page-header .accent-line {
+      width: 50px;
+      height: 2px;
+      background-color: var(--gold);
+      margin: 20px auto 0;
+    }
+
+    /* ===== DIVIDER ===== */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 60px;
+    }
+
+    .divider-line {
+      flex: 1;
+      height: 1px;
+      background-color: var(--blue-pale);
+    }
+
+    .divider-tile {
+      width: 60px;
+      height: 60px;
+      flex-shrink: 0;
+      margin: 0 20px;
+    }
+
+    /* ===== PRESS GRID ===== */
+    .press-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 60px 80px;
+    }
+
+    .press-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .press-card {
+      border: 1px solid #e5e5e5;
+      padding: 40px 36px;
+      transition: box-shadow 0.3s ease;
+      position: relative;
+    }
+
+    .press-card:hover {
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    }
+
+    .press-card-type {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+
+    .press-card h3 {
+      font-family: 'Lato', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--blue-deep);
+      line-height: 1.4;
+      margin-bottom: 12px;
+    }
+
+    .press-card p {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 300;
+      line-height: 1.7;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .press-card-meta {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #bbb;
+    }
+
+    .press-card-link {
+      display: inline-block;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue-primary);
+      text-decoration: none;
+      margin-top: 16px;
+      transition: color 0.3s;
+    }
+
+    .press-card-link:hover { color: var(--blue-deep); }
+
+    .press-card.featured {
+      grid-column: span 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .press-card.featured .press-card-image {
+      background-color: var(--gray-light);
+      height: 280px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #bbb;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background-color: var(--blue-deep);
+      color: var(--white);
+      padding: 40px 60px;
+      text-align: center;
+    }
+
+    .footer-brand {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.6rem;
+      margin-bottom: 8px;
+    }
+
+    .footer p {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .footer a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+    }
+
+    .footer a:hover { color: var(--white); }
+
+    .footer-bottom {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.1em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SVG defs -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden;">
+    <defs>
+      <symbol id="talavera-corner" viewBox="0 0 451.84 421.65">
+        <path fill="#fff" d="M270.62,258.43c-33.06-85.06-13.33-172.95,47.23-235.36-31.07-18.6-68.16-20.89-99.11-3.66-27.53,16.06-39.57,44.53-32.93,77.68-22.51-26.34-39.6-52.25-66.24-72.84C91.75,2.76,50.37-7.7,17.97,6.51,1.02,33.62,8.42,72.17,26.52,98.26c20.1,28.97,49.75,45.48,76.71,70.46-20.59-2.05-37.27-4.36-54.68,3.26C2.79,191.98-12.44,247.66,14.16,290.17c75.63-55.13,169.2-67.25,256.47-31.74ZM326.45,179.13c16.28-119.59,96.53-95.03,121.35-123.47,8.2-9.4,2.33-22.72-3.49-30.1-6.27-7.96-18.23-9.58-29.1-8.6-24.56,2.22-42.61,16.51-59.9,33.06-65.59,62.76-70.15,158.87-26.93,237.87l-4.66-68.98c-.84-12.44,1.76-25.95,2.73-39.78ZM127.98,317.72c60.26-17.24,110.96-11.05,173.16-1.15-84.35-47.23-181.4-48.97-259.79,10.94-30.79,23.53-57.84,69.64-29.25,88.9,8.44,5.68,25.58,8.5,33.49-.87,23.7-28.07,18.69-74.22,82.38-97.82Z"/>
+        <path fill="currentColor" d="M270.62,258.43c-87.26-35.51-180.84-23.38-256.47,31.74-26.6-42.51-11.37-98.19,34.39-118.19,17.41-7.61,34.1-5.3,54.68-3.26-26.97-24.98-56.61-41.49-76.71-70.46C8.42,72.17,1.02,33.62,17.97,6.51,50.37-7.7,91.75,2.76,119.57,24.25c26.64,20.58,43.74,46.5,66.24,72.84-6.64-33.15,5.4-61.62,32.93-77.68,30.95-17.23,68.05-14.94,99.11,3.66-60.56,62.41-80.29,150.3-47.23,235.36Z"/>
+        <path fill="currentColor" d="M127.98,317.72c-63.69,23.6-58.68,69.75-82.38,97.82-7.91,9.37-25.06,6.56-33.49.87-28.59-19.26-1.54-65.37,29.25-88.9,78.39-59.91,175.43-58.17,259.79-10.94-62.2-9.9-112.9-16.09-173.16,1.15Z"/>
+        <path fill="currentColor" d="M326.45,179.13c-.97,13.83-3.57,27.34-2.73,39.78l4.66,68.98c-43.22-79-38.65-175.11,26.93-237.87,17.29-16.55,35.34-30.84,59.9-33.06,10.87-.98,22.83.65,29.1,8.6,5.81,7.38,11.69,20.71,3.49,30.1-24.82,28.44-105.07,3.88-121.35,123.47Z"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="navbar">
+    <ul class="nav-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#menu">Menu</a></li>
+      <li><a href="index.html" class="nav-logo">Blue Corn</a></li>
+      <li><a href="press.html" style="color:var(--white);">Press</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== PAGE HEADER ===== -->
+  <div class="page-header">
+    <h1>Press</h1>
+    <p>Blue Corn in the news, media features, and awards</p>
+    <div class="accent-line"></div>
+  </div>
+
+  <!-- ===== DIVIDER ===== -->
+  <div class="section-divider">
+    <div class="divider-line"></div>
+    <svg class="divider-tile" viewBox="0 0 100 100" style="color:var(--blue-talavera);">
+      <g transform="translate(0,0) scale(0.42)"><use href="#talavera-corner" fill="currentColor"/></g>
+      <g transform="translate(100,0) scale(-0.42,0.42)"><use href="#talavera-corner" fill="currentColor"/></g>
+      <g transform="translate(0,100) scale(0.42,-0.42)"><use href="#talavera-corner" fill="currentColor"/></g>
+      <g transform="translate(100,100) scale(-0.42,-0.42)"><use href="#talavera-corner" fill="currentColor"/></g>
+    </svg>
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- ===== PRESS GRID ===== -->
+  <section class="press-section">
+    <div class="press-grid">
+
+      <!-- Featured article -->
+      <div class="press-card featured">
+        <div class="press-card-image">Photo / Press Image</div>
+        <div>
+          <div class="press-card-type">Featured</div>
+          <h3>Article Title Here</h3>
+          <p>A brief excerpt or summary of the article or feature about Blue Corn. This would be 2-3 sentences highlighting the key points of the press mention.</p>
+          <div class="press-card-meta">Publication Name &bull; January 2024</div>
+          <a href="#" class="press-card-link">Read Article &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Press card -->
+      <div class="press-card">
+        <div class="press-card-type">Media Feature</div>
+        <h3>Article or Segment Title</h3>
+        <p>Short description of the media appearance, article, or TV segment featuring Blue Corn.</p>
+        <div class="press-card-meta">Publication &bull; Month 2024</div>
+        <a href="#" class="press-card-link">Read More &rarr;</a>
+      </div>
+
+      <!-- Press card -->
+      <div class="press-card">
+        <div class="press-card-type">Award</div>
+        <h3>Award or Recognition Title</h3>
+        <p>Description of the award or recognition Blue Corn received and what it means to the restaurant.</p>
+        <div class="press-card-meta">Awarding Organization &bull; 2023</div>
+      </div>
+
+      <!-- Press card -->
+      <div class="press-card">
+        <div class="press-card-type">Review</div>
+        <h3>Review or Write-Up Title</h3>
+        <p>Excerpt from a published restaurant review highlighting Blue Corn's food, atmosphere, or service.</p>
+        <div class="press-card-meta">Food Magazine &bull; Month 2023</div>
+        <a href="#" class="press-card-link">Read Review &rarr;</a>
+      </div>
+
+      <!-- Press card -->
+      <div class="press-card">
+        <div class="press-card-type">TV / Video</div>
+        <h3>TV Appearance or Video Feature</h3>
+        <p>Description of a television appearance, video segment, or documentary feature about Blue Corn.</p>
+        <div class="press-card-meta">Network or Channel &bull; 2023</div>
+        <a href="#" class="press-card-link">Watch &rarr;</a>
+      </div>
+
+      <!-- Press card -->
+      <div class="press-card">
+        <div class="press-card-type">Article</div>
+        <h3>News Article Title</h3>
+        <p>Summary of a news article, neighborhood spotlight, or community feature about Blue Corn and the South Philly dining scene.</p>
+        <div class="press-card-meta">Local News &bull; Month 2022</div>
+        <a href="#" class="press-card-link">Read Article &rarr;</a>
+      </div>
+
+      <!-- Press card -->
+      <div class="press-card">
+        <div class="press-card-type">Award</div>
+        <h3>Another Award or Recognition</h3>
+        <p>Details about another accolade or list that Blue Corn was featured on.</p>
+        <div class="press-card-meta">Restaurant Guide &bull; 2022</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-brand">Blue Corn</div>
+    <p>940 S 9th St, Philadelphia, PA 19147 &bull; <a href="tel:+12159251010">(215) 925-1010</a></p>
+    <div class="footer-bottom">&copy; 2025 Blue Corn. All rights reserved.</div>
+  </footer>
+
+</body>
+</html>

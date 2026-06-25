@@ -1,0 +1,2812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blue Corn Mexican Restaurant</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lato:wght@300;400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --blue-deep: #1A3A5C;
+      --blue-primary: #2B4F7E;
+      --blue-talavera: #2E4A7A;
+      --blue-light: #5A8FC5;
+      --blue-pale: #D6E6F5;
+      --gold: #C49A2A;
+      --charcoal: #2B2B2B;
+      --white: #FFFFFF;
+      --gray-light: #F5F5F5;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-snap-type: y proximity;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      color: var(--charcoal);
+      background-color: var(--white);
+      overflow-x: hidden;
+    }
+
+    .talavera-corner {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+    }
+
+    /* ===== NAVIGATION ===== */
+    .navbar {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      padding: 18px 40px;
+      background-color: var(--blue-deep);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-left {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      align-items: center;
+      justify-self: start;
+    }
+
+    .nav-left a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.8);
+      font-family: 'Lato', sans-serif;
+      font-weight: 400;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: color 0.3s ease;
+    }
+
+    .nav-left a:hover { color: var(--white); }
+
+    .nav-logo {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2rem;
+      color: var(--white);
+      text-decoration: none;
+      justify-self: center;
+    }
+
+    .nav-right {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+      align-items: center;
+      justify-self: end;
+    }
+
+    .nav-right a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.8);
+      font-family: 'Lato', sans-serif;
+      font-weight: 400;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: color 0.3s ease;
+    }
+
+    .nav-right a:hover { color: var(--white); }
+
+    .nav-socials {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      margin-left: 24px;
+    }
+
+    .nav-socials a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color 0.3s;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-socials a:hover { color: var(--white); }
+
+    .nav-socials svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    .nav-cta {
+      display: inline-block;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.5);
+      padding: 8px 20px;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: all 0.3s;
+      margin-left: 8px;
+    }
+
+    .nav-cta:hover {
+      background-color: rgba(255,255,255,0.15);
+      border-color: var(--white);
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      height: 90vh;
+      min-height: 600px;
+      background-color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-border {
+      position: absolute;
+      inset: 30px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .hero-title-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 12px;
+      padding-top: 15px;
+    }
+
+    .hero-est,
+    .hero-year {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blue-talavera);
+      writing-mode: vertical-lr;
+      opacity: 0.7;
+      margin-top: 30px;
+    }
+
+    .hero-est { transform: rotate(180deg); }
+
+    .hero-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 7.5rem;
+      font-weight: 400;
+      color: var(--blue-deep);
+      line-height: 1;
+    }
+
+    .hero-subtitle {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--blue-primary);
+      opacity: 0.6;
+      margin-bottom: 36px;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--white);
+      background-color: var(--blue-deep);
+      border: none;
+      padding: 14px 40px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .hero-cta:hover { background-color: var(--blue-primary); }
+
+    /* ===== INFO BAR ===== */
+    .info-bar {
+      background-color: var(--blue-deep);
+      color: var(--white);
+      padding: 16px 60px;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .info-bar span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .info-bar .gold { color: var(--gold); }
+
+    /* ===== SECTION DIVIDER ===== */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 60px;
+      gap: 0;
+    }
+
+    .divider-line {
+      flex: 1;
+      height: 1px;
+      background-color: var(--blue-pale);
+    }
+
+    .divider-tile {
+      width: 60px;
+      height: 60px;
+      flex-shrink: 0;
+      margin: 0 20px;
+    }
+
+    /* ===== ABOUT ===== */
+    .about {
+      background-color: var(--blue-deep);
+      color: var(--white);
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .about-inner {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 0;
+    }
+
+    .about-left {
+      padding: 130px 50px 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      zoom: 1;
+    }
+
+    .about-title .script {
+      font-family: 'Great Vibes', cursive;
+      font-size: 24rem;
+      font-weight: 400;
+      display: block;
+      line-height: 0.55;
+      padding-top: 40px;
+    }
+
+    .about-title .bold {
+      font-family: 'Lato', sans-serif;
+      font-size: 13rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -0.04em;
+      display: block;
+      line-height: 0.95;
+      margin-top: 0;
+    }
+
+    .about-body {
+      margin-top: 28px;
+    }
+
+    .about-body p {
+      font-family: 'Lato', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 300;
+      line-height: 1.25;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 40px;
+    }
+
+    .about-cta {
+      margin-top: -10px;
+    }
+
+    .about-right {
+      padding: 50px 50px 50px 0;
+      display: flex;
+      align-items: stretch;
+    }
+
+    .about-photo {
+      width: 100%;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .about-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .btn-call {
+      display: inline-block;
+      align-self: flex-start;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+      background-color: var(--blue-deep);
+      padding: 12px 24px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      margin-top: 12px;
+    }
+
+    .btn-call:hover { background-color: var(--blue-primary); }
+
+    /* ===== MEET THE TEAM ===== */
+    .team-section {
+      padding: 100px 60px 100px;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .team-section h2 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 5rem;
+      color: var(--blue-deep);
+      margin-bottom: 14px;
+    }
+
+    .team-section .accent-line {
+      width: 60px;
+      height: 2px;
+      background-color: var(--gold);
+      margin: 0 auto 50px;
+    }
+
+    .team-grid {
+      display: flex;
+      justify-content: center;
+      gap: 70px;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .team-member {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .team-photo {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      overflow: hidden;
+      background-color: var(--gray-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      filter: grayscale(100%);
+      transition: filter 0.3s ease;
+    }
+
+    .team-photo:hover {
+      filter: grayscale(0%);
+    }
+
+    .team-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .team-photo .placeholder {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #ccc;
+    }
+
+    .team-name {
+      font-family: 'Lato', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--charcoal);
+    }
+
+    .team-role {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: #999;
+      margin-top: -6px;
+    }
+
+    /* ===== REVIEWS & ACCOLADES ===== */
+    .reviews-section {
+      padding: 80px 40px;
+      background-color: var(--white);
+      overflow: hidden;
+    }
+
+    .reviews-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .reviews-header h2 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3rem;
+      color: var(--blue-deep);
+      margin-bottom: 10px;
+    }
+
+    .reviews-header .accent-line {
+      width: 50px;
+      height: 2px;
+      background-color: var(--gold);
+      margin: 0 auto;
+    }
+
+    .reviews-slider {
+      position: relative;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+    .reviews-cta {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .reviews-track {
+      display: flex;
+      animation: slideReviews 25s linear infinite;
+    }
+
+    .review-tile {
+      flex: 0 0 calc(100% / 3);
+      padding: 0 12px;
+    }
+
+    .review-tile-inner {
+      background-color: var(--white);
+      border: 1px solid #e0e0e0;
+      padding: 40px 28px 36px;
+      text-align: center;
+      position: relative;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .review-tile-inner .tc-tl,
+    .review-tile-inner .tc-tr,
+    .review-tile-inner .tc-bl,
+    .review-tile-inner .tc-br {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+    }
+
+    .review-tile-inner .tc-tl { top: 8px; left: 8px; }
+    .review-tile-inner .tc-tr { top: 8px; right: 8px; transform: scaleX(-1); }
+    .review-tile-inner .tc-bl { bottom: 8px; left: 8px; transform: scaleY(-1); }
+    .review-tile-inner .tc-br { bottom: 8px; right: 8px; transform: scale(-1,-1); }
+
+    .review-stars {
+      color: var(--gold);
+      font-size: 0.9rem;
+      letter-spacing: 3px;
+      margin-bottom: 14px;
+    }
+
+    .review-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-style: italic;
+      line-height: 1.6;
+      color: #444;
+      margin-bottom: 18px;
+    }
+
+    .review-author {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue-primary);
+    }
+
+    .review-accolade {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 4px;
+    }
+
+    @keyframes slideReviews {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ===== MENU STACKING CARDS ===== */
+    .menu-section {
+      padding: 0;
+    }
+
+    .menu-section-header {
+      text-align: center;
+      padding: 80px 60px 40px;
+      background: var(--white);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .menu-section-header h2 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 4.5rem;
+      color: var(--blue-deep);
+      margin-bottom: 10px;
+    }
+
+    .menu-section-header .accent-line {
+      width: 50px;
+      height: 2px;
+      background-color: var(--gold);
+      margin: 0 auto 20px;
+    }
+
+    .menu-section-header p {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: #999;
+    }
+
+    .menu-stack {
+      position: relative;
+    }
+
+    .menu-card {
+      background-color: var(--white);
+      border-top: 1px solid #e0e0e0;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+    }
+
+    .menu-card-tab {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 60px;
+      cursor: pointer;
+      user-select: none;
+      transition: opacity 0.2s;
+    }
+
+    .menu-card-tab:hover {
+      opacity: 0.7;
+    }
+
+    .menu-card-tab h3 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.4rem;
+      color: var(--blue-deep);
+    }
+
+    .menu-card-toggle {
+      font-family: 'Lato', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: var(--blue-talavera);
+      transition: transform 0.3s ease;
+      line-height: 1;
+    }
+
+    .menu-card.open .menu-card-toggle {
+      transform: rotate(45deg);
+    }
+
+    .menu-card-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+      padding: 0 60px;
+    }
+
+    .menu-card.open .menu-card-content {
+      max-height: 8000px;
+      transition: max-height 0.8s ease-in;
+      padding-bottom: 60px;
+    }
+
+    .menu-card-content {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .menu-sub-heading {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue-deep);
+      margin: 40px 0 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--blue-pale);
+    }
+
+    .menu-sub-heading:first-of-type {
+      margin-top: 0;
+    }
+
+    .menu-sub-heading span {
+      font-weight: 300;
+      color: #999;
+      margin-left: 8px;
+    }
+
+    .menu-card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 80px;
+    }
+
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 14px 0;
+      border-bottom: 1px dotted #ddd;
+    }
+
+    .menu-item-info { flex: 1; }
+
+    .menu-item-name {
+      font-family: 'Lato', sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--charcoal);
+    }
+
+    .menu-item-desc {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: #999;
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+
+    .menu-item-price {
+      font-family: 'Lato', sans-serif;
+      font-size: 1rem;
+      color: var(--blue-primary);
+      font-weight: 400;
+      margin-left: 20px;
+      white-space: nowrap;
+    }
+
+    .menu-card-cta {
+      text-align: center;
+      padding: 40px 0 20px;
+    }
+
+    .menu-placeholder {
+      text-align: center;
+      padding: 60px 0;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: #bbb;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ===== FOOTER ===== */
+    /* ===== INFO SECTION ===== */
+    .info-section {
+      padding: 80px 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 60px;
+    }
+
+    .info-block h3 {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--blue-deep);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .info-block p {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: #555;
+    }
+
+    .info-block ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .info-block ul li {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: #444;
+      padding: 6px 0;
+      padding-left: 16px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .info-block ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 13px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--blue-talavera);
+    }
+
+    .info-block a {
+      color: var(--blue-primary);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .info-block a:hover {
+      color: var(--blue-deep);
+    }
+
+    .footer {
+      background-color: var(--blue-deep);
+      color: var(--white);
+      padding: 60px;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .footer-brand {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.2rem;
+      margin-bottom: 12px;
+    }
+
+    .footer-tagline {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 300;
+      opacity: 0.7;
+      margin-bottom: 16px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .footer-social a {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-social a:hover { color: var(--white); }
+
+    .footer-col h4 {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      color: var(--blue-light);
+    }
+
+    .footer-col p,
+    .footer-col a {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+    }
+
+    .footer-col a:hover { color: var(--white); }
+
+    .footer-notice {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      line-height: 2;
+      margin-top: 12px;
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 40px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      text-align: center;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.1em;
+    }
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .hero-title { font-size: 5.5rem; }
+      .hero-border svg.talavera-corner { width: 240px !important; height: 240px !important; }
+      .about-left { padding: 40px; }
+      .about-title .script { font-size: 4rem; }
+      .about-title .bold { font-size: 3.5rem; }
+      .menu-card-grid { grid-template-columns: 1fr; gap: 0; }
+      .info-section { grid-template-columns: 1fr 1fr; }
+      .footer-inner { grid-template-columns: 1fr 1fr; gap: 30px; }
+    }
+
+    @media (max-width: 768px) {
+      .navbar { padding: 14px 20px; flex-wrap: wrap; gap: 10px; justify-content: center; }
+      .nav-left { font-size: 1.4rem; }
+      .nav-center { gap: 16px; }
+      .nav-center a { font-size: 0.7rem; letter-spacing: 0.1em; }
+      .nav-socials { gap: 12px; }
+      .nav-socials svg { width: 15px; height: 15px; }
+
+      .hero { height: 70vh; min-height: 450px; }
+      .hero-border { inset: 16px; }
+      .hero-border svg.talavera-corner { width: 140px !important; height: 140px !important; }
+      .hero-title { font-size: 3.8rem; }
+      .hero-title-row { gap: 14px; }
+      .hero-est, .hero-year { font-size: 0.5rem; margin-top: 16px; }
+      .hero-subtitle { font-size: 0.7rem; letter-spacing: 0.2em; margin-bottom: 24px; }
+      .hero-cta { padding: 12px 28px; font-size: 0.65rem; }
+
+      .info-bar { padding: 14px 24px; gap: 16px; font-size: 0.6rem; }
+
+      .section-divider { padding: 16px 24px; }
+
+      .about-inner { grid-template-columns: 1fr; }
+      .about-left { padding: 30px 24px; }
+      .about-title .script { font-size: 3rem; }
+      .about-title .bold { font-size: 2.5rem; }
+      .about-right { height: 300px; }
+      .team-section { padding: 40px 24px 60px !important; }
+      .team-grid { gap: 30px; }
+
+      .reviews-section { padding: 50px 24px; }
+      .reviews-header h2 { font-size: 2.2rem; }
+      .review-tile { flex: 0 0 80%; }
+
+      .menu-card-tab { padding: 20px 24px; }
+      .menu-card-tab h3 { font-size: 1.8rem; }
+      .menu-card-content { padding: 0 24px; }
+      .menu-card.open .menu-card-content { padding-bottom: 40px; }
+
+      .info-section { grid-template-columns: 1fr; padding: 50px 24px; gap: 40px; }
+
+      .footer { padding: 40px 24px; }
+      .footer-inner { grid-template-columns: 1fr; gap: 30px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero { height: 60vh; min-height: 380px; }
+      .hero-border svg.talavera-corner { width: 90px !important; height: 90px !important; }
+      .hero-title { font-size: 2.8rem; }
+      .hero-subtitle { font-size: 0.6rem; letter-spacing: 0.15em; }
+      .hero-est, .hero-year { font-size: 0.45rem; margin-top: 10px; }
+
+      .nav-center { gap: 10px; }
+      .nav-center a { font-size: 0.6rem; }
+      .nav-left { font-size: 1.2rem; }
+      .nav-socials { display: none; }
+
+      .about-text h2 { font-size: 2rem; }
+      .about-photo { height: 280px; }
+
+      .review-tile { flex: 0 0 90%; }
+      .review-tile-inner { padding: 30px 20px; min-height: 220px; }
+
+      .menu-card-tab h3 { font-size: 1.5rem; }
+
+      .press-grid { grid-template-columns: 1fr; }
+      .press-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SVG defs -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden;">
+    <defs>
+      <symbol id="talavera-corner" viewBox="0 0 451.84 421.65">
+        <path fill="#fff" d="M270.62,258.43c-33.06-85.06-13.33-172.95,47.23-235.36-31.07-18.6-68.16-20.89-99.11-3.66-27.53,16.06-39.57,44.53-32.93,77.68-22.51-26.34-39.6-52.25-66.24-72.84C91.75,2.76,50.37-7.7,17.97,6.51,1.02,33.62,8.42,72.17,26.52,98.26c20.1,28.97,49.75,45.48,76.71,70.46-20.59-2.05-37.27-4.36-54.68,3.26C2.79,191.98-12.44,247.66,14.16,290.17c75.63-55.13,169.2-67.25,256.47-31.74ZM326.45,179.13c16.28-119.59,96.53-95.03,121.35-123.47,8.2-9.4,2.33-22.72-3.49-30.1-6.27-7.96-18.23-9.58-29.1-8.6-24.56,2.22-42.61,16.51-59.9,33.06-65.59,62.76-70.15,158.87-26.93,237.87l-4.66-68.98c-.84-12.44,1.76-25.95,2.73-39.78ZM127.98,317.72c60.26-17.24,110.96-11.05,173.16-1.15-84.35-47.23-181.4-48.97-259.79,10.94-30.79,23.53-57.84,69.64-29.25,88.9,8.44,5.68,25.58,8.5,33.49-.87,23.7-28.07,18.69-74.22,82.38-97.82Z"/>
+        <path fill="currentColor" d="M270.62,258.43c-87.26-35.51-180.84-23.38-256.47,31.74-26.6-42.51-11.37-98.19,34.39-118.19,17.41-7.61,34.1-5.3,54.68-3.26-26.97-24.98-56.61-41.49-76.71-70.46C8.42,72.17,1.02,33.62,17.97,6.51,50.37-7.7,91.75,2.76,119.57,24.25c26.64,20.58,43.74,46.5,66.24,72.84-6.64-33.15,5.4-61.62,32.93-77.68,30.95-17.23,68.05-14.94,99.11,3.66-60.56,62.41-80.29,150.3-47.23,235.36Z"/>
+        <path fill="currentColor" d="M127.98,317.72c-63.69,23.6-58.68,69.75-82.38,97.82-7.91,9.37-25.06,6.56-33.49.87-28.59-19.26-1.54-65.37,29.25-88.9,78.39-59.91,175.43-58.17,259.79-10.94-62.2-9.9-112.9-16.09-173.16,1.15Z"/>
+        <path fill="currentColor" d="M326.45,179.13c-.97,13.83-3.57,27.34-2.73,39.78l4.66,68.98c-43.22-79-38.65-175.11,26.93-237.87,17.29-16.55,35.34-30.84,59.9-33.06,10.87-.98,22.83.65,29.1,8.6,5.81,7.38,11.69,20.71,3.49,30.1-24.82,28.44-105.07,3.88-121.35,123.47Z"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="navbar">
+    <ul class="nav-left">
+      <li><a href="#about">About</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="press.html">Press</a></li>
+    </ul>
+    <a href="index.html" class="nav-logo">Blue Corn</a>
+    <div class="nav-right">
+      <div class="nav-socials">
+        <a href="https://www.instagram.com/bluecornmex/" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+        <a href="https://www.facebook.com/BlueCornRestaurant/" target="_blank" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="https://x.com/bluecorn_mex" target="_blank" aria-label="X / Twitter"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="https://www.yelp.com/biz/blue-corn-philadelphia" target="_blank" aria-label="Yelp"><svg viewBox="0 0 24 24"><path d="M20.16 12.594l-4.995 1.433c-.96.276-1.74-.8-1.176-1.63l2.905-4.308a1.072 1.072 0 011.596-.206l2.039 1.81c.634.564.422 1.634-.37 1.9zm-1.042 5.457l-2.636-1.313a1.073 1.073 0 01-.122-1.841l4.176-3.013c.765-.552 1.808.107 1.627 1.028l-.698 3.57c-.14.712-1.04 1.183-1.664.968l-.683-.4zm-7.166 2.672l.413-3.632c.108-.944 1.356-1.236 1.886-.44l2.702 4.07c.41.617-.095 1.467-.823 1.384l-3.115-.356c-.73-.083-1.17-.688-1.063-1.026zm-2.31-7.865c.004-1.037-1.277-1.512-1.922-.712L3.06 17.65c-.498.617.023 1.53.813 1.424l3.39-.452c.605-.08 1.377-.634 1.38-1.215v-4.55zM10.55 2.058l1.694 9.735c.165.95-.962 1.574-1.7.94L2.39 5.862c-.57-.49-.302-1.46.432-1.56l7.093-.97c.446-.062.596.454.635.726z"/></svg></a>
+        <a href="https://www.tripadvisor.com/Restaurant_Review-g60795-d8143223-Reviews-Blue_Corn-Philadelphia_Pennsylvania.html" target="_blank" aria-label="TripAdvisor"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm6.807 7.653h1.696c-.105.16-.207.323-.305.49a5.47 5.47 0 01-2.076 8.736 5.47 5.47 0 01-3.93-.107L12 18.964l-2.192-2.192a5.47 5.47 0 01-3.93.107 5.47 5.47 0 01-2.076-8.736c-.098-.167-.2-.33-.305-.49h1.696A5.478 5.478 0 0112 5.036a5.478 5.478 0 016.807 2.617zM8.5 9a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm7 0a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm-7 2a1.5 1.5 0 110 3 1.5 1.5 0 010-3zm7 0a1.5 1.5 0 110 3 1.5 1.5 0 010-3z"/></svg></a>
+      </div>
+      <a href="#contact" class="nav-cta">Contact Us</a>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-border">
+      <svg class="talavera-corner" style="position:absolute;top:0;left:0;width:400px;height:400px;color:var(--blue-talavera);">
+        <use href="#talavera-corner"/>
+      </svg>
+      <svg class="talavera-corner" style="position:absolute;top:0;right:0;width:400px;height:400px;color:var(--blue-talavera);transform:scaleX(-1);">
+        <use href="#talavera-corner"/>
+      </svg>
+      <svg class="talavera-corner" style="position:absolute;bottom:0;left:0;width:400px;height:400px;color:var(--blue-talavera);transform:scaleY(-1);">
+        <use href="#talavera-corner"/>
+      </svg>
+      <svg class="talavera-corner" style="position:absolute;bottom:0;right:0;width:400px;height:400px;color:var(--blue-talavera);transform:scale(-1,-1);">
+        <use href="#talavera-corner"/>
+      </svg>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-title-row">
+        <span class="hero-est">EST.</span>
+        <h1 class="hero-title">Blue Corn</h1>
+        <span class="hero-year">2014</span>
+      </div>
+      <p class="hero-subtitle">Mexican Restaurant &amp; Bar</p>
+      <a href="#menu" class="hero-cta">View Menu</a>
+    </div>
+  </section>
+
+  <!-- ===== INFO BAR ===== -->
+  <div class="info-bar">
+    <span class="gold">Cash Only for Dine-In</span>
+    <span>Pick-Up &amp; Delivery Available</span>
+    <span>Reservations Recommended</span>
+    <span><a href="tel:+12159251010" style="color:var(--white);text-decoration:none;">Call to Order or Reserve a Table</a></span>
+  </div>
+
+  <!-- ===== DIVIDER ===== -->
+  <div class="section-divider">
+    <div class="divider-line"></div>
+    <svg class="divider-tile" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 100 100" style="color:var(--blue-talavera);">
+        <g transform="translate(0,0) scale(0.42)"><use href="#talavera-corner" fill="currentColor"/></g>
+        <g transform="translate(100,0) scale(-0.42,0.42)"><use href="#talavera-corner" fill="currentColor"/></g>
+        <g transform="translate(0,100) scale(0.42,-0.42)"><use href="#talavera-corner" fill="currentColor"/></g>
+        <g transform="translate(100,100) scale(-0.42,-0.42)"><use href="#talavera-corner" fill="currentColor"/></g>
+      </svg>
+    </svg>
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="about" id="about">
+    <div class="about-inner">
+      <div class="about-left">
+        <div class="about-title">
+          <h2><span class="script">About</span><span class="bold">Blue Corn</span></h2>
+        </div>
+        <div class="about-body">
+          <p>Established in 2014, Blue Corn is a family-owned business set out to bring Mexican authentic dishes to you. We provide classics from our homeland.</p>
+          <p>We strive to bring you the best customer service possible. We also have an amazing bar stocked with a wide variety of tequila, mezcal, and assorted fruit for handcrafted cocktails. From our kitchen to your table, every dish is crafted with care, tradition, and&nbsp;the&nbsp;flavors&nbsp;of&nbsp;home.</p>
+        </div>
+        <div class="about-cta">
+          <a href="tel:+12159251010" class="btn-call" style="background-color:var(--gold);color:var(--blue-deep);">Call Us</a>
+        </div>
+      </div>
+      <div class="about-right">
+        <div class="about-photo">
+          <img src="Assets/About Us/Staff Picture.avif" alt="Blue Corn staff" onerror="this.src='Assets/About Us/Staff Picture.jpeg'">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DIVIDER ===== -->
+  <div class="section-divider">
+    <div class="divider-line"></div>
+    <svg class="divider-tile" viewBox="0 0 100 100" style="color:var(--blue-talavera);">
+      <g transform="translate(0,0) scale(0.42)"><use href="#talavera-corner" fill="currentColor"/></g>
+      <g transform="translate(100,0) scale(-0.42,0.42)"><use href="#talavera-corner" fill="currentColor"/></g>
+      <g transform="translate(0,100) scale(0.42,-0.42)"><use href="#talavera-corner" fill="currentColor"/></g>
+      <g transform="translate(100,100) scale(-0.42,-0.42)"><use href="#talavera-corner" fill="currentColor"/></g>
+    </svg>
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- ===== REVIEWS ===== -->
+  <section class="reviews-section" id="reviews">
+    <div class="reviews-header">
+      <h2>Reviews &amp; Accolades</h2>
+      <div class="accent-line"></div>
+    </div>
+    <div class="reviews-slider">
+      <div class="reviews-track">
+        <div class="review-tile">
+          <div class="review-tile-inner">
+            <div class="tc-tl"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="tc-tr"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="tc-bl"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="tc-br"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="review-quote">"Best mole in the city, hands down. Every bite takes me back to my abuela's kitchen."</p>
+            <p class="review-author">Maria G.</p>
+          </div>
+        </div>
+        <div class="review-tile">
+          <div class="review-tile-inner">
+            <div class="tc-tl"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="tc-tr"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="tc-bl"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="tc-br"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="review-stars" style="color:var(--blue-talavera);">&#9830;</div>
+            <p class="review-quote" style="font-style:normal;font-weight:600;">"Best New Restaurant"</p>
+            <p class="review-author">City Magazine, 2022</p>
+            <p class="review-accolade">Award Winner</p>
+          </div>
+        </div>
+        <div class="review-tile">
+          <div class="review-tile-inner">
+            <div class="tc-tl"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="tc-tr"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="tc-bl"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="tc-br"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="review-quote">"Felt like I was back in Puebla. The chiles en nogada were absolutely incredible."</p>
+            <p class="review-author">James R.</p>
+          </div>
+        </div>
+        <div class="review-tile">
+          <div class="review-tile-inner">
+            <div class="tc-tl"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="tc-tr"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="tc-bl"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="tc-br"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="review-stars" style="color:var(--blue-talavera);">&#9830;</div>
+            <p class="review-quote" style="font-style:normal;font-weight:600;">"Top 10 Mexican Restaurants"</p>
+            <p class="review-author">Food &amp; Travel, 2023</p>
+            <p class="review-accolade">Featured</p>
+          </div>
+        </div>
+        <div class="review-tile">
+          <div class="review-tile-inner">
+            <div class="tc-tl"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="tc-tr"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="tc-bl"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="tc-br"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="review-quote">"The blue corn tortillas are a game changer. Our new favorite spot in the city."</p>
+            <p class="review-author">Sofia T.</p>
+          </div>
+        </div>
+        <div class="review-tile">
+          <div class="review-tile-inner">
+            <div class="tc-tl"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="tc-tr"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="tc-bl"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="tc-br"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="review-stars" style="color:var(--blue-talavera);">&#9830;</div>
+            <p class="review-quote" style="font-style:normal;font-weight:600;">"Outstanding Mole Poblano"</p>
+            <p class="review-author">Culinary Awards, 2024</p>
+            <p class="review-accolade">Award Winner</p>
+          </div>
+        </div>
+        <!-- Duplicates for seamless loop -->
+        <div class="review-tile">
+          <div class="review-tile-inner">
+            <div class="tc-tl"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="tc-tr"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="tc-bl"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="tc-br"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="review-quote">"Best mole in the city, hands down. Every bite takes me back to my abuela's kitchen."</p>
+            <p class="review-author">Maria G.</p>
+          </div>
+        </div>
+        <div class="review-tile">
+          <div class="review-tile-inner">
+            <div class="tc-tl"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="tc-tr"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="tc-bl"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="tc-br"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="review-stars" style="color:var(--blue-talavera);">&#9830;</div>
+            <p class="review-quote" style="font-style:normal;font-weight:600;">"Best New Restaurant"</p>
+            <p class="review-author">City Magazine, 2022</p>
+            <p class="review-accolade">Award Winner</p>
+          </div>
+        </div>
+        <div class="review-tile">
+          <div class="review-tile-inner">
+            <div class="tc-tl"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="tc-tr"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="tc-bl"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="tc-br"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="review-quote">"Felt like I was back in Puebla. The chiles en nogada were absolutely incredible."</p>
+            <p class="review-author">James R.</p>
+          </div>
+        </div>
+        <div class="review-tile">
+          <div class="review-tile-inner">
+            <div class="tc-tl"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="tc-tr"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="tc-bl"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="tc-br"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="review-stars" style="color:var(--blue-talavera);">&#9830;</div>
+            <p class="review-quote" style="font-style:normal;font-weight:600;">"Top 10 Mexican Restaurants"</p>
+            <p class="review-author">Food &amp; Travel, 2023</p>
+            <p class="review-accolade">Featured</p>
+          </div>
+        </div>
+        <div class="review-tile">
+          <div class="review-tile-inner">
+            <div class="tc-tl"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="tc-tr"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="tc-bl"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="tc-br"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="review-quote">"The blue corn tortillas are a game changer. Our new favorite spot in the city."</p>
+            <p class="review-author">Sofia T.</p>
+          </div>
+        </div>
+        <div class="review-tile">
+          <div class="review-tile-inner">
+            <div class="tc-tl"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="tc-tr"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="tc-bl"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="tc-br"><svg viewBox="0 0 100 100" style="color:var(--blue-talavera);"><use href="#talavera-corner" fill="currentColor"/></svg></div>
+            <div class="review-stars" style="color:var(--blue-talavera);">&#9830;</div>
+            <p class="review-quote" style="font-style:normal;font-weight:600;">"Outstanding Mole Poblano"</p>
+            <p class="review-author">Culinary Awards, 2024</p>
+            <p class="review-accolade">Award Winner</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reviews-cta">
+      <a href="press.html" class="btn-call">See What They're Saying About Us</a>
+    </div>
+  </section>
+
+  <!-- ===== DIVIDER ===== -->
+  <div class="section-divider">
+    <div class="divider-line"></div>
+    <svg class="divider-tile" viewBox="0 0 100 100" style="color:var(--blue-talavera);">
+      <g transform="translate(0,0) scale(0.42)"><use href="#talavera-corner" fill="currentColor"/></g>
+      <g transform="translate(100,0) scale(-0.42,0.42)"><use href="#talavera-corner" fill="currentColor"/></g>
+      <g transform="translate(0,100) scale(0.42,-0.42)"><use href="#talavera-corner" fill="currentColor"/></g>
+      <g transform="translate(100,100) scale(-0.42,-0.42)"><use href="#talavera-corner" fill="currentColor"/></g>
+    </svg>
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- ===== MENU ===== -->
+  <section class="menu-section" id="menu">
+    <div class="menu-section-header">
+      <h2>Menu</h2>
+      <div class="accent-line"></div>
+      <p>Call to order or reserve a table for dine-in</p>
+      <a href="https://www.yelp.com/biz_photos/blue-corn-philadelphia" target="_blank" class="btn-call" style="margin-top:20px;align-self:center;">See Our Food</a>
+    </div>
+
+    <div class="menu-stack">
+      <!-- SPECIALS -->
+      <div class="menu-card">
+        <div class="menu-card-tab">
+          <h3>Specials</h3>
+          <span class="menu-card-toggle">+</span>
+        </div>
+        <div class="menu-card-content">
+          <div class="menu-card-grid">
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Salmon Mango Ceviche</div>
+                <div class="menu-item-desc">Cured salmon mixed with mango, cucumber, red onion, jalapeño and mango leche de tigre served with avocado, plantain chips finished with extra virgin olive oil and micro greens</div>
+              </div>
+              <span class="menu-item-price">$22</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Calamari en su Tinta</div>
+                <div class="menu-item-desc">Crispy calamari topped with mild spicy squid ink dressing, served with a water cress salad with a maggi dressing, finished with julian radish</div>
+              </div>
+              <span class="menu-item-price">$18</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Oyster Tacos</div>
+                <div class="menu-item-desc">Three corn tortillas filled with fried oysters, huitlacoche purée, mango slaw, fresh jalapeño, avocado and micro cilantro</div>
+              </div>
+              <span class="menu-item-price">$21</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Vuelve a la Vida</div>
+                <div class="menu-item-desc">Shrimp, octopus, crab meat, oysters, home-made Mexican cocktail sauce, clam juice, onion, cilantro, avocado and olive oil</div>
+              </div>
+              <span class="menu-item-price">$30</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Mar y Tierra</div>
+                <div class="menu-item-desc">Grilled filet mignon and octopus, served with Mexican chimichurri steak sauce, jalapeño mashed potatoes and roasted vegetables</div>
+              </div>
+              <span class="menu-item-price">$48</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Pescado Tri a la Talla</div>
+                <div class="menu-item-desc">Oven roasted, open face whole bronzino fish marinated with red and green ala talla sauce served with rice, caesar salad, plantains and chile de árbol sauce</div>
+              </div>
+              <span class="menu-item-price">$38</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Mr. Carne</div>
+                <div class="menu-item-desc">Grilled-oven roasted tomahawk steak served with creamy mushroom sauce, roasted potatoes, chiles toreados, cambray onion and salsa borracha on the side</div>
+              </div>
+              <span class="menu-item-price">$110</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Carne Azteca</div>
+                <div class="menu-item-desc">Grilled rib eye steak, accompanied with bone marrow, served with Mexican chimichurri sauce, roasted potatoes, chiles toreados, cambray onion, and grilled asparagus</div>
+              </div>
+              <span class="menu-item-price">$68</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Chocolate Tres Leches Cake</div>
+                <div class="menu-item-desc">Traditional Mexican cake with rompope whipped cream and fresh strawberries</div>
+              </div>
+              <span class="menu-item-price">$12</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Rice Pudding with Mango</div>
+                <div class="menu-item-desc"></div>
+              </div>
+              <span class="menu-item-price">$9</span>
+            </div>
+          </div>
+          <div class="menu-card-cta">
+            <a href="tel:+12159251010" class="btn-call">Call to Order</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- LUNCH -->
+      <div class="menu-card">
+        <div class="menu-card-tab">
+          <h3>Lunch</h3>
+          <span class="menu-card-toggle">+</span>
+        </div>
+        <div class="menu-card-content">
+
+          <h4 class="menu-sub-heading">Sopas, Ensaladas y Coctel de Mariscos <span>Soups, Salads &amp; Seafood Cocktails</span></h4>
+          <div class="menu-card-grid">
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Sopa Poblana</div>
+                <div class="menu-item-desc">Creamy tomato soup with corn kernels, poblano pepper, and cheese</div>
+              </div>
+              <span class="menu-item-price">$11</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Sopa de Tortilla</div>
+                <div class="menu-item-desc">Tomato soup, fried tortilla, avocado, queso fresco, sour cream, and pasilla chile</div>
+              </div>
+              <span class="menu-item-price">$11</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Consom&eacute; de Pueblito</div>
+                <div class="menu-item-desc">Chicken broth with chicken, rice, and avocado</div>
+              </div>
+              <span class="menu-item-price">$11</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Blue Corn Caesar Salad</div>
+                <div class="menu-item-desc">Crispy blue corn tortilla bowl topped with romaine lettuce, radish, tomatoes, cucumbers, and homemade caesar dressing</div>
+              </div>
+              <span class="menu-item-price">$11</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Eli Seasonal Salad</div>
+                <div class="menu-item-desc">Romaine lettuce, watercress, red onions, queso fresco, fresh fruits, and mustard citrus dressing. Add: chicken $10 / shrimp $10 / salmon $15 / skirt steak $16</div>
+              </div>
+              <span class="menu-item-price">$10</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Nopal Salad</div>
+                <div class="menu-item-desc">Cactus, tomato, radish, onion, oregano, cilantro, panela cheese, and olive oil</div>
+              </div>
+              <span class="menu-item-price">$11</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Coctel de Camar&oacute;n</div>
+                <div class="menu-item-desc">Shrimp smothered in homemade tomato sauce with bruja vinegar, clam juice, topped with onions, cilantro, avocado, and olive oil</div>
+              </div>
+              <span class="menu-item-price">$21</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Ceviche de Pulpo</div>
+                <div class="menu-item-desc">Octopus, pico de gallo, avocado, olive oil, and bruja homemade vinegar</div>
+              </div>
+              <span class="menu-item-price">$21</span>
+            </div>
+          </div>
+
+          <h4 class="menu-sub-heading">Antojitos Mexicanos <span>Appetizers</span></h4>
+          <div class="menu-card-grid">
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Ofrenda De Los Dioses</div>
+                <div class="menu-item-desc">Layers of tortillas stuffed with huitlacoche, poblano pepper, Oaxaca cheese, and cooked onion, finished with a creamy poblana sauce</div>
+              </div>
+              <span class="menu-item-price">$13</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Plain Nachos</div>
+                <div class="menu-item-desc">Refried beans, melted cheese, Elvira sauce, pico de gallo, sour cream, pickled jalape&ntilde;os, and cilantro. Add: steak / chicken / pastor +$5 / mixed +$7</div>
+              </div>
+              <span class="menu-item-price">$13</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Tostadas de Tinga</div>
+                <div class="menu-item-desc">Three crispy tortillas topped with refried beans, tinga (marinated chicken), cheese, sour cream, lettuce, cilantro, and onion</div>
+              </div>
+              <span class="menu-item-price">$17</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Queso Fundido</div>
+                <div class="menu-item-desc">Served with flour tortillas. Choice of: mushrooms, chorizo, or mixed (+$3)</div>
+              </div>
+              <span class="menu-item-price">$19</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Guacamole or Pico de Gallo</div>
+                <div class="menu-item-desc">Served with blue corn chips</div>
+              </div>
+              <span class="menu-item-price">$12</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Chips &amp; Salsa</div>
+                <div class="menu-item-desc"></div>
+              </div>
+              <span class="menu-item-price">$9</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Sopecitos (3 per order)</div>
+                <div class="menu-item-desc">Small soft shell thick corn tortillas topped with refried beans, cheese, and sour cream. Choice of: steak, chorizo, or tinga</div>
+              </div>
+              <span class="menu-item-price">$15</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Quesadillas Mix</div>
+                <div class="menu-item-desc">Chihuahua cheese and epazote: mushroom, huitlacoche, and zucchini flower</div>
+              </div>
+              <span class="menu-item-price">$18</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Flautas (3 per order)</div>
+                <div class="menu-item-desc">Served with romaine lettuce, sour cream, queso fresco, tomatoes, and chile de &aacute;rbol sauce. Choice of: potato with chorizo or chicken (+$1)</div>
+              </div>
+              <span class="menu-item-price">$15</span>
+            </div>
+          </div>
+
+          <h4 class="menu-sub-heading">Huaraches</h4>
+          <div class="menu-card-grid">
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Blue Huarache</div>
+                <div class="menu-item-desc">Sandal shaped tortilla from pinole masa, red salsa, refried beans, grilled cactus, queso fresco, cilantro and onion. Add: steak / chicken / chorizo / carnitas / pastor +$9 / shrimp +$10</div>
+              </div>
+              <span class="menu-item-price">$16</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Huarache Azteca</div>
+                <div class="menu-item-desc">Whole cactus, huitlacoche (corn mushroom), melted Oaxaca cheese, pico de gallo on the side</div>
+              </div>
+              <span class="menu-item-price">$15</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Huarache Gratin</div>
+                <div class="menu-item-desc">Sandal shaped tortilla, green salsa, queso fresco, refried beans, onions, cactus, and melted chihuahua cheese</div>
+              </div>
+              <span class="menu-item-price">$17</span>
+            </div>
+          </div>
+
+          <h4 class="menu-sub-heading">Tacos <span>3 Per Order</span></h4>
+          <div class="menu-card-grid">
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Tacos</div>
+                <div class="menu-item-desc">Choice of: al pastor, carnitas, lengua, pollo, bistec, or cecina</div>
+              </div>
+              <span class="menu-item-price">$16</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Blue Tacos</div>
+                <div class="menu-item-desc">Pastor topped with pineapple, bell peppers, cooked onions, melted Oaxaca cheese and fresh cilantro</div>
+              </div>
+              <span class="menu-item-price">$19</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Tacos Puerto Vallarta</div>
+                <div class="menu-item-desc">Shrimp, crab, and fish cooked with Mexican sauce wrapped with flour tortillas and pico de gallo on the side</div>
+              </div>
+              <span class="menu-item-price">$19</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Tacos de Pollo o Puerco Pibil</div>
+                <div class="menu-item-desc">Chicken or pork shredded and marinated with pibil sauce, topped with fresh cilantro, red onions and manzano peppers</div>
+              </div>
+              <span class="menu-item-price">$16</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Tacos Campechanos</div>
+                <div class="menu-item-desc">Steak with chorizo</div>
+              </div>
+              <span class="menu-item-price">$18</span>
+            </div>
+          </div>
+
+          <h4 class="menu-sub-heading">Tortas y Paninis <span>Served with Salad or Fries</span></h4>
+          <div class="menu-card-grid">
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Torta Cubana</div>
+                <div class="menu-item-desc">Breaded chicken breast, Mexican sausage with scrambled eggs, ham, sausage, Oaxaca cheese, red onions, tomatoes, lettuce, refried beans, avocado, and mayo</div>
+              </div>
+              <span class="menu-item-price">$20</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Chavo del 8</div>
+                <div class="menu-item-desc">Ham, queso fresco, mayo, refried beans, onion, tomato, avocado, and vinegar peppers</div>
+              </div>
+              <span class="menu-item-price">$18</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Vegetable Panini</div>
+                <div class="menu-item-desc">Grilled cactus, romaine lettuce, tomatoes, avocado, fresh panela cheese, onions, and chipotle mayo</div>
+              </div>
+              <span class="menu-item-price">$16</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Pollo Panini</div>
+                <div class="menu-item-desc">Grilled chicken breast, chipotle mayo, tomatoes, onions, avocado, bacon, and mozzarella cheese</div>
+              </div>
+              <span class="menu-item-price">$18</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Milanesa de Pollo o Res</div>
+                <div class="menu-item-desc">Breaded beef (+$1) or chicken, served with refried beans, rice, and salad</div>
+              </div>
+              <span class="menu-item-price">$19</span>
+            </div>
+          </div>
+
+          <h4 class="menu-sub-heading">Burritos</h4>
+          <div class="menu-card-grid">
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Burritos</div>
+                <div class="menu-item-desc">Rice, lettuce, mix cheese, black beans, pico de gallo, and sour cream. Choice of: grilled chicken, chorizo, al pastor, carnitas, steak (+$1), chicken/pork pibil (+$1), chicken mole (+$4), fish (+$5), shrimp (+$7)</div>
+              </div>
+              <span class="menu-item-price">$17</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Burrito Enchilado</div>
+                <div class="menu-item-desc">Chorizo, rice, whole black beans, lettuce, tomato, jalape&ntilde;o peppers, avocado, cilantro, panela cheese finished with manchamantel sauce and melted cheese</div>
+              </div>
+              <span class="menu-item-price">$20</span>
+            </div>
+          </div>
+
+          <h4 class="menu-sub-heading">Huevos, Omelets y Platillos <span>Eggs, Omelettes &amp; Dishes</span></h4>
+          <div class="menu-card-grid">
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Huevo al Gusto</div>
+                <div class="menu-item-desc">Scrambled eggs with rice and whole black beans. Choice of: a la Mexicana, chorizo, ham, or sausage</div>
+              </div>
+              <span class="menu-item-price">$17</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Huevos Huastecos</div>
+                <div class="menu-item-desc">Whole black beans, crispy tortilla, 3 fried eggs, pasilla sauce, and avocado. Served with grilled cactus and grilled panela cheese</div>
+              </div>
+              <span class="menu-item-price">$17</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Huevos Motule&ntilde;os</div>
+                <div class="menu-item-desc">Whole black beans, crispy tortilla, 3 fried eggs, tomato sauce, ham, peas, cilantro salad. Served with sweet plantains</div>
+              </div>
+              <span class="menu-item-price">$17</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Huevos Divorciados</div>
+                <div class="menu-item-desc">Fried eggs, ham, ranchero sauce, green sauce, served with refried beans and chilaquiles</div>
+              </div>
+              <span class="menu-item-price">$17</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Tortilla Provinciana</div>
+                <div class="menu-item-desc">Eggs, Mexican sausage, potatoes, peas, mozzarella cheese, and guacamole</div>
+              </div>
+              <span class="menu-item-price">$16</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Huevos Rancheros</div>
+                <div class="menu-item-desc">Whole black beans, tortillas, fried eggs, ranchero sauce, panela cheese, guacamole, and pico de gallo</div>
+              </div>
+              <span class="menu-item-price">$17</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Omelet a la Mexicana</div>
+                <div class="menu-item-desc">Chorizo, chihuahua cheese, tomato, jalape&ntilde;o peppers, roasted potatoes and refried beans</div>
+              </div>
+              <span class="menu-item-price">$17</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Omelet Poblano</div>
+                <div class="menu-item-desc">Poblano pepper, corn, onion, mushroom, cheese, poblano sauce, pico de gallo. Served with roasted potatoes and refried beans</div>
+              </div>
+              <span class="menu-item-price">$17</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Enchiladas Suizas</div>
+                <div class="menu-item-desc">Chicken, sour cream, melted chihuahua cheese, onion, tomato sauce, served with refried beans</div>
+              </div>
+              <span class="menu-item-price">$20</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Enchiladas de Mole o Verdes</div>
+                <div class="menu-item-desc">Chicken, queso fresco, sour cream, onions, served with refried beans and rice</div>
+              </div>
+              <span class="menu-item-price">$21</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Enchiladas Rojas</div>
+                <div class="menu-item-desc">Steak, queso fresco, sour cream, onions, served with refried beans and rice</div>
+              </div>
+              <span class="menu-item-price">$22</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Almuerzo Campesino</div>
+                <div class="menu-item-desc">Pan-seared steak served with green chilaquiles, one fried egg, and refried beans</div>
+              </div>
+              <span class="menu-item-price">$21</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Chile Relleno a los Tres Quesos</div>
+                <div class="menu-item-desc">Poblano pepper stuffed with Oaxaca and chihuahua cheese, tomato sauce. Served with rice and beans</div>
+              </div>
+              <span class="menu-item-price">$17</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Chilaquiles Verdes o Rojas</div>
+                <div class="menu-item-desc">Blue corn chips saut&eacute;ed with green or red sauce, panela cheese, sour cream, onions, refried beans. Add: eggs +$5 / chicken +$9 / steak +$10</div>
+              </div>
+              <span class="menu-item-price">$15</span>
+            </div>
+          </div>
+
+          <h4 class="menu-sub-heading">Molletes, Pancakes &amp; French Toast</h4>
+          <div class="menu-card-grid">
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Molletes</div>
+                <div class="menu-item-desc">Toasted open-faced panini roll, refried beans, melted cheese and pico de gallo. Add: veggies +$3 / chorizo +$5</div>
+              </div>
+              <span class="menu-item-price">$14</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">French Toast</div>
+                <div class="menu-item-desc">Stuffed with Mexican caramel and bananas topped with homemade whipped cream and fruit with berry sauce</div>
+              </div>
+              <span class="menu-item-price">$18</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Pancakes</div>
+                <div class="menu-item-desc">Served with 2 fried eggs, bacon, and fruit</div>
+              </div>
+              <span class="menu-item-price">$17</span>
+            </div>
+          </div>
+
+          <h4 class="menu-sub-heading">Alambres</h4>
+          <div class="menu-card-grid">
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Alambre</div>
+                <div class="menu-item-desc">Pan-seared onion, bacon, bell pepper, melted mozzarella cheese, guacamole and flour tortillas. Choice of: chicken or steak (+$1)</div>
+              </div>
+              <span class="menu-item-price">$25</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Alambre Poblano</div>
+                <div class="menu-item-desc">Pan-seared steak, onion, poblano pepper, melted mozzarella cheese, pico de gallo, and corn tortillas</div>
+              </div>
+              <span class="menu-item-price">$26</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Shrimp Alambre</div>
+                <div class="menu-item-desc">Shrimp with pan-seared onion, bacon, bell pepper, melted mozzarella cheese, guacamole, and flour tortillas</div>
+              </div>
+              <span class="menu-item-price">$28</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Mixed Alambre</div>
+                <div class="menu-item-desc">Chicken, steak, and shrimp with pan-seared onion, bacon, bell pepper, melted mozzarella cheese, guacamole, and flour tortillas</div>
+              </div>
+              <span class="menu-item-price">$29</span>
+            </div>
+          </div>
+
+          <h4 class="menu-sub-heading">Kids Menu</h4>
+          <div class="menu-card-grid">
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Pan Seared Fish Fillet</div>
+                <div class="menu-item-desc">Served with vegetables and mac &amp; cheese</div>
+              </div>
+              <span class="menu-item-price">$16</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Chicken Fingers</div>
+                <div class="menu-item-desc">Served with vegetables and mac &amp; cheese</div>
+              </div>
+              <span class="menu-item-price">$16</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Cheese Quesadilla</div>
+                <div class="menu-item-desc">Flour tortilla with cheese, served with rice and refried beans</div>
+              </div>
+              <span class="menu-item-price">$11</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Sincronizada</div>
+                <div class="menu-item-desc">Two flour tortillas with melted cheese and ham, served with french fries</div>
+              </div>
+              <span class="menu-item-price">$12</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Pechuga de Pollo</div>
+                <div class="menu-item-desc">Pan-seared chicken breast served with rice, salad, and refried beans</div>
+              </div>
+              <span class="menu-item-price">$18</span>
+            </div>
+          </div>
+
+          <h4 class="menu-sub-heading">Sides</h4>
+          <div class="menu-card-grid">
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Rice &amp; Beans</div></div>
+              <span class="menu-item-price">$5</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Rice</div></div>
+              <span class="menu-item-price">$2.50</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Refried Beans</div></div>
+              <span class="menu-item-price">$3</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Vegetables</div></div>
+              <span class="menu-item-price">$6</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">French Fries</div></div>
+              <span class="menu-item-price">$8</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Mac &amp; Cheese</div></div>
+              <span class="menu-item-price">$9</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Side Salad</div></div>
+              <span class="menu-item-price">$6</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Tortillas (6 Pieces)</div></div>
+              <span class="menu-item-price">$3</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Chips</div></div>
+              <span class="menu-item-price">$3</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Small Guacamole</div></div>
+              <span class="menu-item-price">$3.50</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Small Pico de Gallo</div></div>
+              <span class="menu-item-price">$3.50</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Nopal Guisado</div></div>
+              <span class="menu-item-price">$5</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Nopal Entero</div></div>
+              <span class="menu-item-price">$3</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Rajas Poblanas</div></div>
+              <span class="menu-item-price">$6</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Sweet Plantains</div></div>
+              <span class="menu-item-price">$6</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Avocado</div></div>
+              <span class="menu-item-price">$2.50</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Chile en Vinagre o Chipotle</div></div>
+              <span class="menu-item-price">$2</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Chiles Toreados</div></div>
+              <span class="menu-item-price">$3.50</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Cheese</div></div>
+              <span class="menu-item-price">$4.50</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Sour Cream</div></div>
+              <span class="menu-item-price">$2.50</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Cebolla Cambray</div></div>
+              <span class="menu-item-price">$5</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Hot Peppers</div>
+                <div class="menu-item-desc">Jalape&ntilde;os, manzano, or serrano</div>
+              </div>
+              <span class="menu-item-price">$2.50</span>
+            </div>
+          </div>
+
+          <div class="menu-card-cta">
+            <a href="tel:+12159251010" class="btn-call">Call to Order</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- DINNER -->
+      <div class="menu-card">
+        <div class="menu-card-tab">
+          <h3>Dinner</h3>
+          <span class="menu-card-toggle">+</span>
+        </div>
+        <div class="menu-card-content">
+
+          <h4 class="menu-sub-heading">Sopas <span>Soups</span></h4>
+          <div class="menu-card-grid">
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Sopa Poblana</div>
+                <div class="menu-item-desc">Creamy tomato soup with corn kernels, poblano pepper, and cheese</div>
+              </div>
+              <span class="menu-item-price">$11</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Sopa de Tortilla</div>
+                <div class="menu-item-desc">Tomato soup, fried tortilla, avocado, queso fresco, sour cream, and pasilla chile</div>
+              </div>
+              <span class="menu-item-price">$11</span>
+            </div>
+          </div>
+
+          <h4 class="menu-sub-heading">Ensaladas <span>Salads</span></h4>
+          <div class="menu-card-grid">
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Blue Corn Caesar Salad</div>
+                <div class="menu-item-desc">Crispy blue corn tortilla bowl topped with romaine lettuce, radish, tomatoes, cucumbers, and homemade caesar dressing</div>
+              </div>
+              <span class="menu-item-price">$11</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Eli Seasonal Salad</div>
+                <div class="menu-item-desc">Romaine lettuce, watercress, red onions, queso fresco, fresh fruits, and mustard citrus dressing. Add: chicken $10 / shrimp $10 / salmon $15 / skirt steak $16</div>
+              </div>
+              <span class="menu-item-price">$10</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Nopal Salad</div>
+                <div class="menu-item-desc">Cactus, tomato, radish, onion, oregano, cilantro, panela cheese, and olive oil</div>
+              </div>
+              <span class="menu-item-price">$11</span>
+            </div>
+          </div>
+
+          <h4 class="menu-sub-heading">Coctel de Mariscos Frio <span>Seafood Cocktails</span></h4>
+          <div class="menu-card-grid">
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Coctel de Camar&oacute;n</div>
+                <div class="menu-item-desc">Shrimp smothered in homemade tomato sauce with bruja vinegar, clam juice, topped with onions, cilantro, avocado, and olive oil</div>
+              </div>
+              <span class="menu-item-price">$21</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Ceviche de Pulpo</div>
+                <div class="menu-item-desc">Octopus, pico de gallo, avocado, olive oil, and bruja homemade vinegar</div>
+              </div>
+              <span class="menu-item-price">$21</span>
+            </div>
+          </div>
+
+          <h4 class="menu-sub-heading">Antojitos Mexicanos <span>Appetizers</span></h4>
+          <div class="menu-card-grid">
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Ofrenda De Los Dioses</div>
+                <div class="menu-item-desc">Layers of tortillas stuffed with huitlacoche, poblano pepper, Oaxaca cheese, and cooked onion, finished with a creamy poblana sauce</div>
+              </div>
+              <span class="menu-item-price">$13</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Plain Nachos</div>
+                <div class="menu-item-desc">Refried beans, melted cheese, Elvira sauce, pico de gallo, sour cream, pickled jalape&ntilde;os, cilantro. Add: steak / chicken / pastor +$5 / mixed +$7</div>
+              </div>
+              <span class="menu-item-price">$13</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Guacamole or Pico de Gallo</div>
+                <div class="menu-item-desc">Served with blue corn chips</div>
+              </div>
+              <span class="menu-item-price">$12</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Queso Fundido</div>
+                <div class="menu-item-desc">Served with flour tortillas. Choice of: mushrooms, chorizo, or mixed (+$3)</div>
+              </div>
+              <span class="menu-item-price">$19</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Fundaci&oacute;n Olmeca</div>
+                <div class="menu-item-desc">2 tlacoyos, 2 chalupas, 2 sopecitos with chicken pibil, sprinkled with queso fresco</div>
+              </div>
+              <span class="menu-item-price">$22</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Sopecitos (3 per order)</div>
+                <div class="menu-item-desc">Small soft shell thick corn tortillas topped with refried beans, cheese, and sour cream. Choice of: steak, chorizo, or tinga</div>
+              </div>
+              <span class="menu-item-price">$15</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Gorditas (3 per order)</div>
+                <div class="menu-item-desc">Thick corn tortillas stuffed with lettuce, cheese, and sour cream. Choice of: chicharr&oacute;n prensado, reques&oacute;n, or tinga</div>
+              </div>
+              <span class="menu-item-price">$16</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Quesadillas (3 per order)</div>
+                <div class="menu-item-desc">Corn tortillas with chihuahua cheese and fresh epazote. Choice of: zucchini flower, mushrooms, or huitlacoche</div>
+              </div>
+              <span class="menu-item-price">$17</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Flautas (3 per order)</div>
+                <div class="menu-item-desc">Served with romaine lettuce, sour cream, queso fresco, tomatoes, and chile de &aacute;rbol sauce. Choice of: potato with chorizo or chicken (+$1)</div>
+              </div>
+              <span class="menu-item-price">$15</span>
+            </div>
+          </div>
+
+          <h4 class="menu-sub-heading">Huaraches</h4>
+          <div class="menu-card-grid">
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Huarache Azteca</div>
+                <div class="menu-item-desc">Whole cactus, huitlacoche (corn mushroom), melted Oaxaca cheese, pico de gallo on the side</div>
+              </div>
+              <span class="menu-item-price">$15</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Huarache Gratin</div>
+                <div class="menu-item-desc">Sandal shaped tortilla, green salsa, queso fresco, refried beans, onions, cactus, and melted chihuahua cheese</div>
+              </div>
+              <span class="menu-item-price">$17</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Blue Huarache</div>
+                <div class="menu-item-desc">Sandal shaped tortilla from pinole masa, red salsa, refried beans, grilled cactus, queso fresco, cilantro and onion. Add: steak / chicken / chorizo / carnitas / pastor +$9 / shrimp +$10</div>
+              </div>
+              <span class="menu-item-price">$16</span>
+            </div>
+          </div>
+
+          <h4 class="menu-sub-heading">Tacos <span>3 Per Order</span></h4>
+          <div class="menu-card-grid">
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Tacos</div>
+                <div class="menu-item-desc">Choice of: al pastor, carnitas, lengua, cabeza, tripa, or arrachera (+$21)</div>
+              </div>
+              <span class="menu-item-price">$16</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Blue Tacos</div>
+                <div class="menu-item-desc">Pastor topped with pineapple, bell peppers, cooked onions, melted Oaxaca cheese and fresh cilantro</div>
+              </div>
+              <span class="menu-item-price">$19</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Tacos de Pollo o Puerco Pibil</div>
+                <div class="menu-item-desc">Chicken or pork shredded and marinated with pibil sauce, topped with fresh cilantro, red onions and manzano peppers</div>
+              </div>
+              <span class="menu-item-price">$16</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Tacos Puerto Vallarta</div>
+                <div class="menu-item-desc">Shrimp, crab, and fish cooked with Mexican sauce wrapped with flour tortillas and pico de gallo on the side</div>
+              </div>
+              <span class="menu-item-price">$19</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Taquiza</div>
+                <div class="menu-item-desc">2 skirt steak, 2 chicken chicharr&oacute;n with tomatillo sauce, 2 chorizo; side of cactus and guacamole</div>
+              </div>
+              <span class="menu-item-price">$32</span>
+            </div>
+          </div>
+
+          <h4 class="menu-sub-heading">Tortas y Paninis <span>Served with Salad or Fries</span></h4>
+          <div class="menu-card-grid">
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Tortas</div>
+                <div class="menu-item-desc">Refried beans, mayo, avocado, lettuce, red onion, tomato, Oaxaca cheese. Choice of: carnitas, pastor, chorizo, or Chavo del 8 (ham)</div>
+              </div>
+              <span class="menu-item-price">$18</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Torta Cubana</div>
+                <div class="menu-item-desc">Breaded chicken breast, Mexican sausage with scrambled eggs, ham, sausage, Oaxaca cheese, red onions, tomatoes, lettuce, refried beans, avocado, and mayo</div>
+              </div>
+              <span class="menu-item-price">$20</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Vegetable Panini</div>
+                <div class="menu-item-desc">Grilled cactus, romaine lettuce, tomatoes, avocado, fresh panela cheese, onions, and chipotle mayo</div>
+              </div>
+              <span class="menu-item-price">$16</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Pollo Panini</div>
+                <div class="menu-item-desc">Grilled chicken breast, chipotle mayo, tomatoes, onions, avocado, bacon, and mozzarella cheese</div>
+              </div>
+              <span class="menu-item-price">$18</span>
+            </div>
+          </div>
+
+          <h4 class="menu-sub-heading">Alambres</h4>
+          <div class="menu-card-grid">
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Alambre</div>
+                <div class="menu-item-desc">Pan-seared onion, bacon, bell pepper, melted mozzarella cheese, guacamole and flour tortillas. Choice of: chicken or steak (+$1)</div>
+              </div>
+              <span class="menu-item-price">$25</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Alambre Poblano</div>
+                <div class="menu-item-desc">Pan-seared steak, onion, poblano pepper, melted mozzarella cheese, pico de gallo, and corn tortillas</div>
+              </div>
+              <span class="menu-item-price">$26</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Shrimp Alambre</div>
+                <div class="menu-item-desc">Shrimp with pan-seared onion, bacon, bell pepper, melted mozzarella cheese, guacamole, and flour tortillas</div>
+              </div>
+              <span class="menu-item-price">$28</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Mixed Alambre</div>
+                <div class="menu-item-desc">Chicken, steak, and shrimp with pan-seared onion, bacon, bell pepper, melted mozzarella cheese, guacamole, and flour tortillas</div>
+              </div>
+              <span class="menu-item-price">$29</span>
+            </div>
+          </div>
+
+          <h4 class="menu-sub-heading">Entrees</h4>
+          <div class="menu-card-grid">
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Camarones al Ajillo</div>
+                <div class="menu-item-desc">Saut&eacute;ed shrimp with guajillo pepper, mushrooms, garlic, white wine, served with rice and vegetables</div>
+              </div>
+              <span class="menu-item-price">$29</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Camarones Empanizado</div>
+                <div class="menu-item-desc">Chipotle mayo on the side, served with rice and vegetables</div>
+              </div>
+              <span class="menu-item-price">$28</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Pulpo en su Tinta</div>
+                <div class="menu-item-desc">Octopus prepared with poblano pepper, onions, tomato, parsley, served with rice</div>
+              </div>
+              <span class="menu-item-price">$29</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Salm&oacute;n al Lim&oacute;n</div>
+                <div class="menu-item-desc">Pan-seared salmon finished with lemon sauce, served with rice and vegetables</div>
+              </div>
+              <span class="menu-item-price">$28</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Angelitos Negros</div>
+                <div class="menu-item-desc">Two chicken breasts, sauced with huitlacoche mole and pine nut sauce, served with rice</div>
+              </div>
+              <span class="menu-item-price">$28</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Pollo con Mole</div>
+                <div class="menu-item-desc">Grilled French cut chicken breast, served with rice, whole beans and toasted sesame seeds</div>
+              </div>
+              <span class="menu-item-price">$28</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Sabana</div>
+                <div class="menu-item-desc">Thin-pounded filet mignon, topped with bean sauce, melted chihuahua cheese, cilantro, and pico de gallo</div>
+              </div>
+              <span class="menu-item-price">$28</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Tampiqueña</div>
+                <div class="menu-item-desc">Grilled filet mignon, served with guacamole, refried beans, mole poblano enchilada, and rajas poblanas</div>
+              </div>
+              <span class="menu-item-price">$30</span>
+            </div>
+          </div>
+
+          <h4 class="menu-sub-heading">Kids Menu</h4>
+          <div class="menu-card-grid">
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Pan Seared Fish Fillet</div>
+                <div class="menu-item-desc">Served with vegetables and mac &amp; cheese</div>
+              </div>
+              <span class="menu-item-price">$16</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Chicken Fingers</div>
+                <div class="menu-item-desc">Served with vegetables and mac &amp; cheese</div>
+              </div>
+              <span class="menu-item-price">$16</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Cheese Quesadilla</div>
+                <div class="menu-item-desc">Flour tortilla with cheese, served with rice and refried beans</div>
+              </div>
+              <span class="menu-item-price">$11</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Sincronizada</div>
+                <div class="menu-item-desc">Two flour tortillas with melted cheese and ham, served with french fries</div>
+              </div>
+              <span class="menu-item-price">$12</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Pechuga de Pollo</div>
+                <div class="menu-item-desc">Pan-seared chicken breast served with rice, salad, and refried beans</div>
+              </div>
+              <span class="menu-item-price">$18</span>
+            </div>
+          </div>
+
+          <h4 class="menu-sub-heading">Sides</h4>
+          <div class="menu-card-grid">
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Rice</div></div>
+              <span class="menu-item-price">$2.50</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Rice &amp; Beans</div></div>
+              <span class="menu-item-price">$5</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Refried Beans</div></div>
+              <span class="menu-item-price">$3</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Vegetables</div></div>
+              <span class="menu-item-price">$6</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">French Fries</div></div>
+              <span class="menu-item-price">$8</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Mac &amp; Cheese</div></div>
+              <span class="menu-item-price">$9</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Side Salad</div></div>
+              <span class="menu-item-price">$6</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Tortillas (6 Pieces)</div></div>
+              <span class="menu-item-price">$3</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Chips</div></div>
+              <span class="menu-item-price">$3</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Small Guacamole</div></div>
+              <span class="menu-item-price">$3.50</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Small Pico de Gallo</div></div>
+              <span class="menu-item-price">$3.50</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Nopal Guisado</div></div>
+              <span class="menu-item-price">$5</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Nopal Entero</div></div>
+              <span class="menu-item-price">$3</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Rajas Poblanas</div></div>
+              <span class="menu-item-price">$6</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Sweet Plantains</div></div>
+              <span class="menu-item-price">$6</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Avocado</div></div>
+              <span class="menu-item-price">$2.50</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Chile en Vinagre o Chipotle</div></div>
+              <span class="menu-item-price">$2</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Chiles Toreados</div></div>
+              <span class="menu-item-price">$3.50</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Cheese</div></div>
+              <span class="menu-item-price">$4.50</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Sour Cream</div></div>
+              <span class="menu-item-price">$2.50</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><div class="menu-item-name">Cebolla Cambray</div></div>
+              <span class="menu-item-price">$5</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <div class="menu-item-name">Hot Peppers</div>
+                <div class="menu-item-desc">Jalape&ntilde;os, manzano, or serrano</div>
+              </div>
+              <span class="menu-item-price">$2.50</span>
+            </div>
+          </div>
+
+          <div class="menu-card-cta">
+            <a href="tel:+12159251010" class="btn-call">Call to Order</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAKEOUT -->
+      <div class="menu-card">
+        <div class="menu-card-tab">
+          <h3>Takeout</h3>
+          <span class="menu-card-toggle">+</span>
+        </div>
+        <div class="menu-card-content">
+          <p style="font-family:'Lato',sans-serif;font-size:0.8rem;font-weight:400;color:#999;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:30px;text-align:center;">Minimum $40 for delivery ($80 for orders out of range) &bull; Surcharge for special food requests</p>
+
+          <h4 class="menu-sub-heading">Sopas, Ensaladas y Coctel de Mariscos <span>Soups, Salads &amp; Seafood Cocktails</span></h4>
+          <div class="menu-card-grid">
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Sopa de Tortilla</div><div class="menu-item-desc">Tomato soup, fried tortilla, avocado, queso fresco, sour cream, and pasilla chile</div></div><span class="menu-item-price">$11</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Sopa Poblana</div><div class="menu-item-desc">Creamy tomato soup with corn kernels, poblano pepper, and cheese</div></div><span class="menu-item-price">$11</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Blue Corn Caesar Salad</div><div class="menu-item-desc">Crispy blue corn tortilla bowl topped with romaine lettuce, radish, tomatoes, cucumbers, and homemade caesar dressing</div></div><span class="menu-item-price">$11</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Consom&eacute; de Pueblito</div><div class="menu-item-desc">Chicken broth with chicken, rice, and avocado</div></div><span class="menu-item-price">$11</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Nopal Salad</div><div class="menu-item-desc">Cactus, tomato, radish, onion, oregano, cilantro, panela cheese, and olive oil</div></div><span class="menu-item-price">$11</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Eli Seasonal Salad</div><div class="menu-item-desc">Romaine lettuce, watercress, red onions, queso fresco, fresh fruits, and mustard citrus dressing. Add: chicken $10 / shrimp $10 / salmon $15 / skirt steak $16</div></div><span class="menu-item-price">$10</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Ceviche de Pulpo</div><div class="menu-item-desc">Octopus, pico de gallo, avocado, olive oil, and bruja homemade vinegar</div></div><span class="menu-item-price">$21</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Coctel de Camar&oacute;n</div><div class="menu-item-desc">Shrimp smothered in homemade tomato sauce with bruja vinegar, clam juice, topped with onions, cilantro, avocado, and olive oil</div></div><span class="menu-item-price">$21</span></div>
+          </div>
+
+          <h4 class="menu-sub-heading">Lunch Items</h4>
+          <div class="menu-card-grid">
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Huevo al Gusto</div><div class="menu-item-desc">Scrambled eggs with rice and whole black beans. Choice of: a la Mexicana, chorizo, ham, or sausage</div></div><span class="menu-item-price">$17</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Huevos Huastecos</div><div class="menu-item-desc">Whole black beans, crispy tortilla, 3 fried eggs, pasilla sauce, and avocado. Served with grilled cactus and grilled panela cheese</div></div><span class="menu-item-price">$17</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Huevos Motule&ntilde;os</div><div class="menu-item-desc">Whole black beans, crispy tortilla, 3 fried eggs, tomato sauce, ham, peas, cilantro salad. Served with sweet plantains</div></div><span class="menu-item-price">$17</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Huevos Divorciados</div><div class="menu-item-desc">Fried eggs, ham, ranchero sauce, green sauce, served with refried beans and chilaquiles</div></div><span class="menu-item-price">$17</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Tortilla Provinciana</div><div class="menu-item-desc">Eggs, Mexican sausage, potatoes, peas, mozzarella cheese, and guacamole</div></div><span class="menu-item-price">$16</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Huevos Rancheros</div><div class="menu-item-desc">Whole black beans, tortillas, fried eggs, ranchero sauce, panela cheese, guacamole, and pico de gallo</div></div><span class="menu-item-price">$17</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Omelet a la Mexicana</div><div class="menu-item-desc">Chorizo, chihuahua cheese, tomato, jalape&ntilde;o peppers, roasted potatoes and refried beans</div></div><span class="menu-item-price">$17</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Omelet Poblano</div><div class="menu-item-desc">Poblano pepper, corn, onion, mushroom, cheese, poblano sauce, pico de gallo. Served with roasted potatoes and refried beans</div></div><span class="menu-item-price">$17</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Chile Relleno a los Tres Quesos</div><div class="menu-item-desc">Poblano pepper stuffed with Oaxaca and chihuahua cheese, tomato sauce. Served with rice and beans</div></div><span class="menu-item-price">$17</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">French Toast</div><div class="menu-item-desc">Stuffed with Mexican caramel and bananas topped with homemade whipped cream and fruit with berry sauce</div></div><span class="menu-item-price">$18</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Pancakes</div><div class="menu-item-desc">Served with 2 fried eggs, bacon, and fruit</div></div><span class="menu-item-price">$17</span></div>
+          </div>
+
+          <h4 class="menu-sub-heading">Tacos <span>3 Per Order</span></h4>
+          <div class="menu-card-grid">
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Tacos</div><div class="menu-item-desc">Choice of: al pastor, carnitas, lengua, cabeza, tripa, or arrachera (+$21)</div></div><span class="menu-item-price">$16</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Tacos de Pollo o Puerco Pibil</div><div class="menu-item-desc">Chicken or pork marinated with pibil sauce, fresh cilantro, red onions and manzano peppers</div></div><span class="menu-item-price">$16</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Blue Tacos</div><div class="menu-item-desc">Pastor topped with pineapple, bell peppers, cooked onions, melted Oaxaca cheese and fresh cilantro</div></div><span class="menu-item-price">$19</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Tacos Puerto Vallarta</div><div class="menu-item-desc">Shrimp, crab, and fish cooked with Mexican sauce wrapped with flour tortillas and pico de gallo on the side</div></div><span class="menu-item-price">$19</span></div>
+          </div>
+
+          <h4 class="menu-sub-heading">Tortas y Paninis <span>Served with Salad or Fries</span></h4>
+          <div class="menu-card-grid">
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Torta Cubana</div><div class="menu-item-desc">Breaded chicken breast, Mexican sausage with scrambled eggs, ham, sausage, Oaxaca cheese, red onions, tomatoes, lettuce, refried beans, avocado, and mayo</div></div><span class="menu-item-price">$20</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Tortas</div><div class="menu-item-desc">Refried beans, mayo, avocado, lettuce, red onions, tomatoes, Oaxaca cheese. Choice of: milanesa de res, milanesa de pollo, al pastor, chorizo, Chavo del 8 (ham), or carnitas</div></div><span class="menu-item-price">$18</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Vegetable Panini</div><div class="menu-item-desc">Grilled cactus, romaine lettuce, tomatoes, avocado, fresh panela cheese, onions, and chipotle mayo</div></div><span class="menu-item-price">$16</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Pollo Panini</div><div class="menu-item-desc">Grilled chicken breast, chipotle mayo, tomatoes, onions, avocado, bacon, and mozzarella cheese</div></div><span class="menu-item-price">$18</span></div>
+          </div>
+
+          <h4 class="menu-sub-heading">Antojitos Mexicanos <span>Appetizers</span></h4>
+          <div class="menu-card-grid">
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Plain Nachos</div><div class="menu-item-desc">Refried beans, melted cheese, Elvira sauce, pico de gallo, sour cream, pickled jalape&ntilde;os, cilantro. Add: steak / chicken / pastor +$5 / mixed +$7</div></div><span class="menu-item-price">$13</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Queso Fundido</div><div class="menu-item-desc">Served with flour tortillas. Choice of: mushrooms, chorizo, or mixed (+$3)</div></div><span class="menu-item-price">$19</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Gorditas (3 per order)</div><div class="menu-item-desc">Thick corn tortillas stuffed with lettuce, cheese, and sour cream. Choice of: chicharr&oacute;n prensado, reques&oacute;n, or tinga</div></div><span class="menu-item-price">$16</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Quesadillas (3 per order)</div><div class="menu-item-desc">Corn tortillas with chihuahua cheese and fresh epazote. Choice of: zucchini flower, mushrooms, or huitlacoche</div></div><span class="menu-item-price">$17</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Flautas (3 per order)</div><div class="menu-item-desc">Served with romaine lettuce, sour cream, queso fresco, tomatoes, and chile de &aacute;rbol sauce. Choice of: potato with chorizo or chicken (+$1)</div></div><span class="menu-item-price">$15</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Molletes</div><div class="menu-item-desc">Toasted open-faced panini roll, refried beans, melted cheese and pico de gallo. Add: veggies +$3 / chorizo +$5</div></div><span class="menu-item-price">$14</span></div>
+          </div>
+
+          <h4 class="menu-sub-heading">Burritos <span>Served with Salad or Fries</span></h4>
+          <div class="menu-card-grid">
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Burritos</div><div class="menu-item-desc">Rice, lettuce, mix cheese, black beans, pico de gallo, and sour cream. Choice of: grilled chicken, chorizo, al pastor, carnitas, steak (+$1), chicken/pork pibil (+$1), chicken mole (+$4), fish (+$5), shrimp (+$7)</div></div><span class="menu-item-price">$17</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Burrito Enchilado</div><div class="menu-item-desc">Chorizo, rice, whole black beans, lettuce, tomato, jalape&ntilde;o peppers, avocado, cilantro, panela cheese finished with manchamantel sauce and melted cheese</div></div><span class="menu-item-price">$20</span></div>
+          </div>
+
+          <h4 class="menu-sub-heading">Huaraches</h4>
+          <div class="menu-card-grid">
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Blue Huarache</div><div class="menu-item-desc">Sandal shaped tortilla from pinole masa, red salsa, refried beans, grilled cactus, queso fresco, cilantro and onion. Add: steak / chicken / chorizo / carnitas / pastor +$9 / shrimp +$10</div></div><span class="menu-item-price">$16</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Huarache Gratin</div><div class="menu-item-desc">Sandal shaped tortilla, green salsa, queso fresco, refried beans, onions, cactus, and melted chihuahua cheese</div></div><span class="menu-item-price">$17</span></div>
+          </div>
+
+          <h4 class="menu-sub-heading">Platillos <span>Mexican Dishes</span></h4>
+          <div class="menu-card-grid">
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Camarones al Ajillo</div><div class="menu-item-desc">Saut&eacute;ed shrimp with guajillo pepper, mushrooms, garlic, white wine, served with rice and vegetables</div></div><span class="menu-item-price">$29</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Salm&oacute;n al Lim&oacute;n</div><div class="menu-item-desc">Pan-seared salmon finished with lemon sauce, served with rice and vegetables</div></div><span class="menu-item-price">$28</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Almuerzo Campesino</div><div class="menu-item-desc">Pan-seared steak served with green chilaquiles, one fried egg, and refried beans</div></div><span class="menu-item-price">$21</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Chilaquiles Verdes o Rojas</div><div class="menu-item-desc">Blue corn chips saut&eacute;ed with green or red sauce, panela cheese, sour cream, onions, refried beans. Add: eggs +$5 / chicken +$9 / steak +$10</div></div><span class="menu-item-price">$15</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Milanesa de Pollo o Res</div><div class="menu-item-desc">Breaded beef (+$1) or chicken, served with refried beans, rice, and salad</div></div><span class="menu-item-price">$19</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Enchiladas Suizas</div><div class="menu-item-desc">Chicken, sour cream, melted chihuahua cheese, onion, tomato sauce, served with refried beans</div></div><span class="menu-item-price">$20</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Enchiladas de Mole o Verdes</div><div class="menu-item-desc">Chicken, queso fresco, sour cream, onions, served with refried beans and rice</div></div><span class="menu-item-price">$21</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Enchiladas Rojas</div><div class="menu-item-desc">Steak, queso fresco, sour cream, onions, served with refried beans and rice</div></div><span class="menu-item-price">$22</span></div>
+          </div>
+
+          <h4 class="menu-sub-heading">Alambres</h4>
+          <div class="menu-card-grid">
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Mixed Alambre</div><div class="menu-item-desc">Chicken, steak, and shrimp with pan-seared onion, bacon, bell pepper, melted mozzarella cheese, guacamole, and flour tortillas</div></div><span class="menu-item-price">$29</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Shrimp Alambre</div><div class="menu-item-desc">Shrimp with pan-seared onion, bacon, bell pepper, melted mozzarella cheese, guacamole, and flour tortillas</div></div><span class="menu-item-price">$28</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Alambre</div><div class="menu-item-desc">Pan-seared onion, bacon, bell pepper, melted mozzarella cheese, guacamole and flour tortillas. Choice of: chicken or steak (+$1)</div></div><span class="menu-item-price">$25</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Alambre Poblano</div><div class="menu-item-desc">Pan-seared steak, onion, poblano pepper, melted mozzarella cheese, pico de gallo, and corn tortillas</div></div><span class="menu-item-price">$26</span></div>
+          </div>
+
+          <h4 class="menu-sub-heading">Kids Menu</h4>
+          <div class="menu-card-grid">
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Pan Seared Fish Fillet</div><div class="menu-item-desc">Served with vegetables and mac &amp; cheese</div></div><span class="menu-item-price">$16</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Chicken Fingers</div><div class="menu-item-desc">Served with vegetables and mac &amp; cheese</div></div><span class="menu-item-price">$16</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Cheese Quesadilla</div><div class="menu-item-desc">Flour tortilla with cheese, served with rice and refried beans</div></div><span class="menu-item-price">$11</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Sincronizada</div><div class="menu-item-desc">Two flour tortillas with melted cheese and ham, served with french fries</div></div><span class="menu-item-price">$12</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Pechuga de Pollo</div><div class="menu-item-desc">Pan-seared chicken breast served with rice, salad, and refried beans</div></div><span class="menu-item-price">$18</span></div>
+          </div>
+
+          <h4 class="menu-sub-heading">Sides</h4>
+          <div class="menu-card-grid">
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Rice &amp; Beans</div></div><span class="menu-item-price">$5</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Rice</div></div><span class="menu-item-price">$2.50</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Refried Beans</div></div><span class="menu-item-price">$3</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Vegetables</div></div><span class="menu-item-price">$6</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">French Fries</div></div><span class="menu-item-price">$8</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Mac &amp; Cheese</div></div><span class="menu-item-price">$9</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Side Salad</div></div><span class="menu-item-price">$6</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Tortillas (6 Pieces)</div></div><span class="menu-item-price">$3</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Chips</div></div><span class="menu-item-price">$3</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Small Guacamole</div></div><span class="menu-item-price">$3.50</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Small Pico de Gallo</div></div><span class="menu-item-price">$3.50</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Nopal Guisado</div></div><span class="menu-item-price">$5</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Nopal Entero</div></div><span class="menu-item-price">$3</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Rajas Poblanas</div></div><span class="menu-item-price">$6</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Sweet Plantains</div></div><span class="menu-item-price">$6</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Avocado</div></div><span class="menu-item-price">$2.50</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Chile en Vinagre o Chipotle</div></div><span class="menu-item-price">$2</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Chiles Toreados</div></div><span class="menu-item-price">$3.50</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Cheese</div></div><span class="menu-item-price">$4.50</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Sour Cream</div></div><span class="menu-item-price">$2.50</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Cebolla Cambray</div></div><span class="menu-item-price">$5</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Hot Peppers</div><div class="menu-item-desc">Jalape&ntilde;os, manzano, or serrano</div></div><span class="menu-item-price">$2.50</span></div>
+          </div>
+
+          <h4 class="menu-sub-heading">Postres <span>Desserts</span></h4>
+          <div class="menu-card-grid">
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Flan Napolitano</div><div class="menu-item-desc">Served with fruit</div></div><span class="menu-item-price">$9</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Pinole Cheesecake</div><div class="menu-item-desc">Blue cornmeal lime graham crust served with blackberry sauce</div></div><span class="menu-item-price">$9</span></div>
+          </div>
+
+          <h4 class="menu-sub-heading">Soft Drinks</h4>
+          <div class="menu-card-grid">
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Coca Cola</div></div><span class="menu-item-price">$4</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Sprite</div></div><span class="menu-item-price">$4</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Sangr&iacute;a Se&ntilde;orial</div></div><span class="menu-item-price">$4</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Sidral Mundet</div></div><span class="menu-item-price">$3.75</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Jarrito Club Soda</div></div><span class="menu-item-price">$3</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Jarrito</div><div class="menu-item-desc">Fruit punch, lime, mandarin, pineapple, grapefruit, or tamarind</div></div><span class="menu-item-price">$4</span></div>
+          </div>
+
+          <h4 class="menu-sub-heading">Aguas Frescas <span>Flavored Waters</span></h4>
+          <div class="menu-card-grid">
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Agua de Coco</div><div class="menu-item-desc">Coconut flavored water</div></div><span class="menu-item-price">$3.50</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Agua de Tamarindo</div><div class="menu-item-desc">Tamarind flavored water</div></div><span class="menu-item-price">$3.50</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Agua de Jamaica</div><div class="menu-item-desc">Hibiscus iced tea</div></div><span class="menu-item-price">$3.50</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Agua de Horchata</div><div class="menu-item-desc">Mexican rice drink with cinnamon and sugar</div></div><span class="menu-item-price">$3.50</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Limonada</div><div class="menu-item-desc">Lemonade</div></div><span class="menu-item-price">$3.50</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Naranjada</div><div class="menu-item-desc">Orange lemonade</div></div><span class="menu-item-price">$3.50</span></div>
+          </div>
+
+          <h4 class="menu-sub-heading">Homemade Mixers <span>32 oz</span></h4>
+          <div class="menu-card-grid">
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Margarita Mix</div></div><span class="menu-item-price">$26</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Cubana Mix</div></div><span class="menu-item-price">$28</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Clamato Mix</div></div><span class="menu-item-price">$26</span></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Sangrita</div></div><span class="menu-item-price">$26</span></div>
+          </div>
+
+          <div class="menu-card-cta">
+            <a href="tel:+12159251010" class="btn-call">Call to Order</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAMILY PACKAGE -->
+      <div class="menu-card">
+        <div class="menu-card-tab">
+          <h3>Family Package</h3>
+          <span class="menu-card-toggle">+</span>
+        </div>
+        <div class="menu-card-content">
+          <p style="font-family:'Lato',sans-serif;font-size:0.8rem;font-weight:400;color:#999;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:30px;text-align:center;">Please place an order 2 days before with a 50% deposit</p>
+
+          <h4 class="menu-sub-heading">Package #1 &mdash; Tacos <span>5 people $165 / 10 people $320</span></h4>
+          <div class="menu-card-grid">
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Includes</div><div class="menu-item-desc">Flank steak, pastor (pork), chicken pibil, and vegetarian tacos. Served with onions, cilantro, and sauce on the side</div></div></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Guacamole &amp; Chips</div></div></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Rice &amp; Refried Beans</div></div></div>
+          </div>
+          <div style="margin:16px 0 8px;font-family:'Lato',sans-serif;font-size:0.8rem;font-weight:300;color:#777;line-height:1.8;">
+            <strong style="font-weight:700;color:var(--charcoal);">For 5 people:</strong> 20 tacos, 20 oz guacamole &amp; chips, 5 portions rice &amp; beans<br>
+            <strong style="font-weight:700;color:var(--charcoal);">For 10 people:</strong> Double the amount
+          </div>
+
+          <h4 class="menu-sub-heading">Package #2 <span>5 people $185 / 10 people $350</span></h4>
+          <div class="menu-card-grid">
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Enchiladas Verdes</div><div class="menu-item-desc">With chicken (cheese and sour cream on the side)</div></div></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Enchiladas Rojas</div><div class="menu-item-desc">With steak (cheese and sour cream on the side)</div></div></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Rice &amp; Refried Beans</div></div></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Guacamole &amp; Chips</div></div></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Eli Seasonal Salad</div></div></div>
+          </div>
+          <div style="margin:16px 0 8px;font-family:'Lato',sans-serif;font-size:0.8rem;font-weight:300;color:#777;line-height:1.8;">
+            <strong style="font-weight:700;color:var(--charcoal);">For 5 people:</strong> 10 red steak enchiladas, 10 green chicken enchiladas, 5 portions rice &amp; beans, 2 orders salad, 20 oz guacamole &amp; chips<br>
+            <strong style="font-weight:700;color:var(--charcoal);">For 10 people:</strong> Double the amount
+          </div>
+
+          <h4 class="menu-sub-heading">Package #3 <span>5 people $270 / 10 people $520</span></h4>
+          <div class="menu-card-grid">
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Guacamole &amp; Chips</div></div></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Poblano Soup</div></div></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Chipotle Mashed Potatoes</div></div></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Mixed Vegetables</div></div></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Bronzino Fish Fillet</div><div class="menu-item-desc">Served with Mexican sauce</div></div></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Oven Roasted Filet Mignon</div><div class="menu-item-desc">Sliced, served with chimichurri sauce</div></div></div>
+          </div>
+          <div style="margin:16px 0 8px;font-family:'Lato',sans-serif;font-size:0.8rem;font-weight:300;color:#777;line-height:1.8;">
+            <strong style="font-weight:700;color:var(--charcoal);">For 5 people:</strong> 20 oz guacamole &amp; chips, 1.5 qt poblano soup, 2.5 lbs vegetables, 5 portions chipotle mashed potatoes, 25 oz fish, 25 oz filet mignon<br>
+            <strong style="font-weight:700;color:var(--charcoal);">For 10 people:</strong> Double the amount
+          </div>
+
+          <div class="menu-card-cta">
+            <a href="tel:+12159251010" class="btn-call">Call to Order</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PARTY BOOKING -->
+      <div class="menu-card">
+        <div class="menu-card-tab">
+          <h3>Party Booking</h3>
+          <span class="menu-card-toggle">+</span>
+        </div>
+        <div class="menu-card-content">
+          <p style="font-family:'Lato',sans-serif;font-size:0.8rem;font-weight:400;color:#999;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;text-align:center;">Lunch Party Booking &bull; Capacity of 45 people</p>
+          <p style="font-family:'Lato',sans-serif;font-size:0.8rem;font-weight:300;color:#999;margin-bottom:30px;text-align:center;">Call <a href="tel:+12159251010" style="color:var(--blue-primary);text-decoration:none;font-weight:700;">215-925-1010</a> for questions and to book your party</p>
+
+          <h4 class="menu-sub-heading">Prix Fixe Menu #1 <span>$40 Per Person (tax &amp; gratuity not included)</span></h4>
+          <div class="menu-card-grid">
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">First Course (choose one)</div><div class="menu-item-desc">Tortilla Soup or Blue Corn Caesar Salad</div></div></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Second Course (choose one)</div><div class="menu-item-desc">Blue Tacos, Enchiladas Verdes (chicken or vegetarian), Blue Huarache (steak or vegetarian), or Quesadillas Mix</div></div></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Dessert</div><div class="menu-item-desc">Flan Napolitano</div></div></div>
+          </div>
+
+          <h4 class="menu-sub-heading">Prix Fixe Menu #2 <span>$58 Per Person (tax &amp; gratuity not included)</span></h4>
+          <div class="menu-card-grid">
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">First Course (family style)</div><div class="menu-item-desc">Guacamole, chips &amp; salsa, and Chilean seabass ceviche</div></div></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Second Course (choose one)</div><div class="menu-item-desc">Sopa Poblana or Blue Corn Caesar Salad</div></div></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Third Course (choose one)</div><div class="menu-item-desc">Enchiladas de Mole (chicken or vegetarian), Blue Huarache (steak or vegetarian), Shrimp Alambre, or Quesadillas Mix</div></div></div>
+            <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Dessert (choose one)</div><div class="menu-item-desc">Flan Napolitano or Lava Cake</div></div></div>
+          </div>
+
+          <div class="menu-card-cta">
+            <a href="tel:+12159251010" class="btn-call">Call to Book</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DIVIDER ===== -->
+  <div class="section-divider">
+    <div class="divider-line"></div>
+    <svg class="divider-tile" viewBox="0 0 100 100" style="color:var(--blue-talavera);">
+      <g transform="translate(0,0) scale(0.42)"><use href="#talavera-corner" fill="currentColor"/></g>
+      <g transform="translate(100,0) scale(-0.42,0.42)"><use href="#talavera-corner" fill="currentColor"/></g>
+      <g transform="translate(0,100) scale(0.42,-0.42)"><use href="#talavera-corner" fill="currentColor"/></g>
+      <g transform="translate(100,100) scale(-0.42,-0.42)"><use href="#talavera-corner" fill="currentColor"/></g>
+    </svg>
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- ===== HAPPY HOUR, OUTDOOR POLICY & CONTACT ===== -->
+  <section class="info-section" id="visit">
+    <div class="info-block">
+      <h3>Happy Hour</h3>
+      <p>
+        <strong>Monday &ndash; Friday</strong><br>
+        4:00 PM &ndash; 6:00 PM<br><br>
+        <em style="font-size:0.8rem;color:#999;">(Except holidays and special occasions)</em>
+      </p>
+      <ul style="margin-top:16px;">
+        <li>Big parties will not be accepted</li>
+        <li>Reservations will not be taken for happy hour</li>
+        <li>Menu is located on-site</li>
+      </ul>
+    </div>
+    <div class="info-block">
+      <h3>Outdoor Dine-In Policy</h3>
+      <ul>
+        <li>First come first serve (reservations will not be taken)</li>
+        <li>No happy hour for outdoor dine-in</li>
+        <li>Must have a full meal to be served alcohol</li>
+        <li>No pets are allowed</li>
+        <li>No smoking or vaping</li>
+      </ul>
+    </div>
+    <div class="info-block">
+      <h3>Visit Us</h3>
+      <p>
+        940 S 9th St<br>
+        Philadelphia, PA 19147<br><br>
+        <a href="tel:+12159251010">(215) 925-1010</a><br>
+        <a href="mailto:hello@bluecorn.com">hello@bluecorn.com</a>
+      </p>
+      <p style="margin-top:16px;">
+        <strong>Summer Hours</strong><br>
+        Mon &ndash; Thu: 11:00AM &ndash; 10:00PM<br>
+        Fri: 11:00AM &ndash; 12:00AM<br>
+        Sat: 10:30AM &ndash; 12:00AM<br>
+        Sun: 10:30AM &ndash; 9:30PM
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== DIVIDER ===== -->
+  <div class="section-divider">
+    <div class="divider-line"></div>
+    <svg class="divider-tile" viewBox="0 0 100 100" style="color:var(--blue-talavera);">
+      <g transform="translate(0,0) scale(0.42)"><use href="#talavera-corner" fill="currentColor"/></g>
+      <g transform="translate(100,0) scale(-0.42,0.42)"><use href="#talavera-corner" fill="currentColor"/></g>
+      <g transform="translate(0,100) scale(0.42,-0.42)"><use href="#talavera-corner" fill="currentColor"/></g>
+      <g transform="translate(100,100) scale(-0.42,-0.42)"><use href="#talavera-corner" fill="currentColor"/></g>
+    </svg>
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" id="contact">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <div class="footer-brand">Blue Corn</div>
+        <p class="footer-tagline">Mexican Restaurant &amp; Bar &mdash; Est. 2014</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/bluecornmex/" target="_blank">Instagram</a>
+          <a href="https://www.facebook.com/BlueCornRestaurant/" target="_blank">Facebook</a>
+          <a href="https://x.com/bluecorn_mex" target="_blank">X</a>
+          <a href="https://www.yelp.com/biz/blue-corn-philadelphia" target="_blank">Yelp</a>
+          <a href="https://www.tripadvisor.com/Restaurant_Review-g60795-d8143223-Reviews-Blue_Corn-Philadelphia_Pennsylvania.html" target="_blank">TripAdvisor</a>
+        </div>
+      </div>
+      <div class="footer-col" id="visit">
+        <h4>Visit Us</h4>
+        <p>
+          940 S 9th St<br>
+          Philadelphia, PA 19147
+        </p>
+        <div class="footer-notice">
+          Cash Only for Dine-In<br>
+          Pick-Up &amp; Delivery Available
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Summer Hours</h4>
+        <p>
+          Mon &ndash; Thu: 11am &ndash; 9pm<br>
+          Fri &ndash; Sat: 11am &ndash; 10pm<br>
+          Sun: 10am &ndash; 8pm
+        </p>
+        <div class="footer-notice">
+          Reservations Recommended
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p>
+          <a href="tel:+12159251010">(215) 925-1010</a><br>
+          <a href="mailto:hello@bluecorn.com">hello@bluecorn.com</a>
+        </p>
+        <div class="footer-notice" style="margin-top:16px;">
+          Call to Order or<br>Reserve a Table
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2025 Blue Corn. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const top = target.getBoundingClientRect().top + window.pageYOffset - 70;
+          smoothScrollTo(top, 400);
+        }
+      });
+    });
+
+    function smoothScrollTo(target, duration) {
+      const start = window.pageYOffset;
+      const distance = target - start;
+      let startTime = null;
+      function ease(t) {
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      }
+      function step(timestamp) {
+        if (!startTime) startTime = timestamp;
+        const progress = Math.min((timestamp - startTime) / duration, 1);
+        window.scrollTo(0, start + distance * ease(progress));
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    document.querySelectorAll('.menu-card-tab').forEach(tab => {
+      tab.addEventListener('click', function() {
+        const card = this.closest('.menu-card');
+        const wasOpen = card.classList.contains('open');
+        document.querySelectorAll('.menu-card.open').forEach(c => c.classList.remove('open'));
+        if (!wasOpen) {
+          card.classList.add('open');
+          setTimeout(() => {
+            card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
